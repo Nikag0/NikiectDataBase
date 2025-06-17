@@ -1,0 +1,134 @@
+﻿<UserControl x:Class="AcoustDB.UserControls.TomographicTestingMethodView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AcoustDB.UserControls"
+             
+            xmlns:viewmodels="clr-namespace:ViewModels" 
+            d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
+  
+            mc:Ignorable="d" 
+            d:DesignHeight="800" d:DesignWidth="1600">
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0"/>
+            <RowDefinition Height="500"/>
+            <RowDefinition Height="100*"/>
+        </Grid.RowDefinitions>
+
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="700"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="100*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="230"/>
+                <RowDefinition Height="100*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Column="0" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100*"/>
+                    <ColumnDefinition Width="100*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="100*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Column="0" Grid.ColumnSpan="4" TextWrapping="Wrap" TextAlignment="Center" Text="Общие данные"/>
+
+                <TextBlock Grid.Column="0" Grid.Row="2" Text="Номер технологической карты"/>
+                <TextBlock Grid.Column="1" Grid.Row="2" Text="Наименование номартивного документа"/>
+                <TextBlock Grid.Column="0" Grid.Row="5" Text="Организация, выполнившая контроль"/>
+
+                <TextBox Grid.Column="0" Grid.Row="3" Margin="5" 
+                           Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageNonDestructive.TomographicTestingMethod.GeneralDataTesting.TechnologCardNum}"/>
+                <TextBox Grid.Column="1" Grid.Row="3" Margin="5" 
+                           Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageNonDestructive.TomographicTestingMethod.GeneralDataTesting.NameRegulatoryDoc}"/>
+                <TextBox Grid.Column="0" Grid.Row="6" Margin="5" 
+                           Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageNonDestructive.TomographicTestingMethod.GeneralDataTesting.OrganizationTesting}"/>
+                
+
+            </Grid>
+
+            <TextBlock Grid.Column="2" Grid.Row="0" VerticalAlignment="Top" Text="Средства контроля"/>
+            <DataGrid Grid.Column="2" Grid.Row="0" Margin="0 30 0 0" AutoGenerateColumns="False" CanUserDeleteRows="False" CanUserAddRows="False"
+ItemsSource="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageNonDestructive.TomographicTestingMethod.TableTestingTools}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="400" Header="Вид средства" Binding="{Binding TypeTool}"/>
+                    <DataGridTextColumn Width="*" Header="Наименование" Binding="{Binding NameUserIn}"/>
+                    <DataGridTextColumn Width="*" Header="Зав. номер" Binding="{Binding SerialNumber}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <TextBlock Grid.Column="0" Grid.Row="1" VerticalAlignment="Top" Text="Параметры настройки оборудования и преобразователя"/>
+            <DataGrid Grid.Column="0" Grid.Row="1" Margin="0 30 0 0" AutoGenerateColumns="False" CanUserDeleteRows="False" CanUserAddRows="False"
+                       ItemsSource="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageNonDestructive.TomographicTestingMethod.TableEquipmentParameters}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="*" Header="Параметр" Binding="{Binding TypeTool}"/>
+                    <DataGridTextColumn Width="*" Header="Значение" Binding="{Binding NameUserIn}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <TextBlock Grid.Column="2" Grid.Row="1" VerticalAlignment="Top" Text="Параметры контроля"/>
+            <DataGrid Grid.Column="2" Grid.Row="1" Margin="0 30 0 0" AutoGenerateColumns="False" CanUserDeleteRows="False" CanUserAddRows="False"
+                       ItemsSource="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageNonDestructive.TomographicTestingMethod.TableTestingParameters}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="*" Header="Параметр" Binding="{Binding TypeTool}"/>
+                    <DataGridTextColumn Width="*" Header="Значение" Binding="{Binding NameUserIn}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
+
+        <TextBlock Grid.Column="0" Grid.Row="2" VerticalAlignment="Top" Text="Результаты контроля"/>
+        <DataGrid Grid.Column="0" Grid.Row="2" Margin="0 30 0 0" AutoGenerateColumns="False" CanUserDeleteRows="True" CanUserAddRows="True"
+     ItemsSource="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageNonDestructive.TomographicTestingMethod.TableTestingResults}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*" Header="Объемная пористость, %" Binding="{Binding ParamDouble_0}"/>
+                <DataGridTextColumn Width="*" Header="Максимальный размер пор, мкм" Binding="{Binding ParamsDouble_1}"/>
+                <DataGridTextColumn Width="*" Header="Размеры пор, мкм" Binding="{Binding ParamString_0}"/>
+                <DataGridTextColumn Width="*" Header="Размер (раскрытие) несплавлений (трещин), мкм" Binding="{Binding ParamString_1}"/>
+                <DataGridTextColumn Width="*" Header="Размер (протяженность) несплавлений (трещин), мкм" Binding="{Binding ParamString_2}"/>
+                <DataGridTextColumn Width="*" Header="Координаты (Х, Y, Z)" Binding="{Binding ParamString_3}"/>
+                <DataGridTextColumn Width="*" Header="Количество несплавлений (трещин)" Binding="{Binding ParamDouble_2}"/>
+
+                <DataGridTemplateColumn Width="*" Header="Исходные данные (томограмма)">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Margin="3" Width="40" Content="+"
+                               Command="{Binding DataContext.ViewModelDevice.LoadFileImgDataTomogr, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                               CommandParameter="{Binding}"/>
+                                <TextBlock Margin="10 0 0 0" FontSize="14" Text="Файлов:"/>
+                                <TextBlock Margin="10 0 0 0" FontSize="14" Text="{Binding FileUser_0.CountFile}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+
+    </Grid>
+</UserControl>

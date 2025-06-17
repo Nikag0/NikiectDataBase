@@ -1,0 +1,290 @@
+﻿<UserControl x:Class="AcoustDB.UserControls.ModeAnalysisObjView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AcoustDB.UserControls"
+              
+            xmlns:viewmodels="clr-namespace:ViewModels" 
+            d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
+  
+            mc:Ignorable="d" 
+            d:DesignHeight="800" d:DesignWidth="1600">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="100*"/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="600"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="100*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" TextWrapping="Wrap" TextAlignment="Center" Text="Вид анализа"/>
+            <ComboBox Grid.Column="1" Margin="5" SelectedIndex="{Binding ViewModelDevice.CurUsedAnalysis}">
+                <ComboBoxItem Content="Металлографический метод оценки микроструктуры"/>
+                <ComboBoxItem Content="Металлографический метод определения неметаллических включений "/>
+                <ComboBoxItem Content="Металлографический метод определение типа и размеров дефектов "/>
+                <ComboBoxItem Content="Измерение микротведости вдавдиванием алмазных наконечников"/>
+                <ComboBoxItem Content="Метод EBSD анализа микроструктуры"/>
+            </ComboBox>
+
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition>
+                    <RowDefinition.Style>
+                        <Style TargetType="RowDefinition">
+                            <Setter Property="Height" Value="0"/>
+
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ViewModelDevice.CurUsedAnalysis}" Value="0">
+                                    <Setter Property="Height" Value="100*"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </RowDefinition.Style>
+                </RowDefinition>
+                <RowDefinition>
+                    <RowDefinition.Style>
+                        <Style TargetType="RowDefinition">
+                            <Setter Property="Height" Value="0"/>
+
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ViewModelDevice.CurUsedAnalysis}" Value="1">
+                                    <Setter Property="Height" Value="100*"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </RowDefinition.Style>
+                </RowDefinition>
+                <RowDefinition>
+                    <RowDefinition.Style>
+                        <Style TargetType="RowDefinition">
+                            <Setter Property="Height" Value="0"/>
+
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ViewModelDevice.CurUsedAnalysis}" Value="2">
+                                    <Setter Property="Height" Value="100*"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </RowDefinition.Style>
+                </RowDefinition>
+                <RowDefinition>
+                    <RowDefinition.Style>
+                        <Style TargetType="RowDefinition">
+                            <Setter Property="Height" Value="0"/>
+
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ViewModelDevice.CurUsedAnalysis}" Value="3">
+                                    <Setter Property="Height" Value="100*"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </RowDefinition.Style>
+                </RowDefinition>
+                <RowDefinition>
+                    <RowDefinition.Style>
+                        <Style TargetType="RowDefinition">
+                            <Setter Property="Height" Value="0"/>
+
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ViewModelDevice.CurUsedAnalysis}" Value="4">
+                                    <Setter Property="Height" Value="100*"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </RowDefinition.Style>
+                </RowDefinition>
+            </Grid.RowDefinitions>
+
+            <DataGrid Grid.Column="0" Grid.Row="0" AutoGenerateColumns="False" CanUserDeleteRows="True" CanUserAddRows="True"
+             ItemsSource="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageAnalysisObj.TableMetallMethMicrostr}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="100" Header="№ образца" Binding="{Binding SampleNumber}"/>
+                    <DataGridTextColumn Width="*" Header="Шкала для описания микроструктуры" Binding="{Binding ScaleMicrostructureDescription}"/>
+                    <DataGridTextColumn Width="100" Header="Бал" Binding="{Binding Ball}"/>
+                    <DataGridTextColumn Width="100" Header="Ряд" Binding="{Binding Row}"/>
+                    <DataGridTextColumn Width="*" Header="Шкала для оценки микроструктуры" Binding="{Binding ScaleMicrostructureAssessment}"/>
+                    <DataGridTextColumn Width="*" Header="Бал" Binding="{Binding Ball1}"/>
+                    <DataGridTextColumn Width="170" Header="Ряд" Binding="{Binding Row1}"/>
+
+                    <DataGridTemplateColumn Width="200" Header="Файл">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Margin="3" Width="40" Content="+"
+                                     Command="{Binding DataContext.ViewModelDevice.LoadMetallMicrostrAssess, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                     CommandParameter="{Binding}"/>
+                                    <TextBlock Margin="10 0 0 0" FontSize="14" Text="Файлов:"/>
+                                    <TextBlock Margin="10 0 0 0" FontSize="14" Text="{Binding FileInfoImg.CountFile}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <DataGrid Grid.Column="0" Grid.Row="1" AutoGenerateColumns="False" CanUserDeleteRows="True" CanUserAddRows="True"
+                        ItemsSource="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageAnalysisObj.TableMetallgrNonmetallic}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="90" Header="№ образца" Binding="{Binding SampleNumber}"/>
+                    <DataGridTextColumn Width="60" Header="Метод" Binding="{Binding MethodUser}"/>
+                    <DataGridTextColumn Width="140" Header="Макс. строч.вкл." Binding="{Binding MaximumScoreInclusions}"/>
+                    <DataGridTextColumn Width="110" Header="Оксиды строч." Binding="{Binding LineOxides}"/>
+                    <DataGridTextColumn Width="100" Header="Оксиды точ." Binding="{Binding PointOxides}"/>
+                    <DataGridTextColumn Width="140" Header="Силикаты хрупкие" Binding="{Binding BrittleSilicates}"/>
+                    <DataGridTextColumn Width="140" Header="Силикаты пластич." Binding="{Binding PlasticSilicates}"/>
+                    <DataGridTextColumn Width="*" Header="Силикаты недеформирующиеся" Binding="{Binding NonDeformableSilicates}"/>
+                    <DataGridTextColumn Width="80" Header="Сульфиды" Binding="{Binding Sulfides}"/>
+                    <DataGridTextColumn Width="*" Header="Нитриды и карбонитриды строчечные" Binding="{Binding LineNitridesCarbonitrides}"/>
+                    <DataGridTextColumn Width="*" Header="Нитриды и карбонитриды точечные" Binding="{Binding PointNitridesCarbonitrides}"/>
+                    <DataGridTextColumn Width="160" Header="Нитриды алюминия" Binding="{Binding AluminumNitrides}"/>
+                    <DataGridTextColumn Width="100" Header="Прочие" Binding="{Binding Other}"/>
+
+                    <DataGridTemplateColumn Width="150" Header="Файл">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Margin="3" Width="40" Content="+"
+                                            Command="{Binding DataContext.ViewModelDevice.LoadMetallgrNonmetallic, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                            CommandParameter="{Binding}"/>
+                                    <TextBlock Margin="10 0 0 0" FontSize="14" Text="Файлов:"/>
+                                    <TextBlock Margin="10 0 0 0" FontSize="14" Text="{Binding FileInfoImg.CountFile}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <DataGrid Grid.Column="0" Grid.Row="2" AutoGenerateColumns="False" CanUserDeleteRows="True" CanUserAddRows="True"
+            ItemsSource="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageAnalysisObj.TableMetallDeterSizeDef}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="90" Header="№ образца" Binding="{Binding SampleNumber}"/>
+                    <DataGridTextColumn Width="*" Header="Степень пористости, %" Binding="{Binding DegreePorosity}"/>
+                    <DataGridTextColumn Width="*" Header="Макс. размер пор, мкм2" Binding="{Binding MaximumPoreSize}"/>
+                    <DataGridTextColumn Width="150" Header="Несплавления" Binding="{Binding LackFusion}"/>
+                    <DataGridTextColumn Width="*" Header="Смещения слоев" Binding="{Binding LayerDisplacements}"/>
+                    <DataGridTextColumn Width="100" Header="Трещины" Binding="{Binding Cracks}"/>
+                    <DataGridTextColumn Width="150" Header="Включения" Binding="{Binding Inclusions}"/>
+                    <DataGridTextColumn Width="100" Header="Другие" Binding="{Binding Others}"/>
+
+                    <DataGridTemplateColumn Width="150" Header="Графики">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Margin="3" Width="40" Content="+"
+                                Command="{Binding DataContext.ViewModelDevice.LoadMetallgrDeterSizeDefGraph, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                CommandParameter="{Binding}"/>
+                                    <TextBlock Margin="10 0 0 0" FontSize="14" Text="Файлов:"/>
+                                    <TextBlock Margin="10 0 0 0" FontSize="14" Text="{Binding FileInfoGraph.CountFile}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Width="150" Header="Изображения">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Margin="3" Width="40" Content="+"
+                                Command="{Binding DataContext.ViewModelDevice.LoadMetallgrDeterSizeDefImg, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                CommandParameter="{Binding}"/>
+                                    <TextBlock Margin="10 0 0 0" FontSize="14" Text="Файлов:"/>
+                                    <TextBlock Margin="10 0 0 0" FontSize="14" Text="{Binding FileInfoImg.CountFile}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <DataGrid Grid.Column="0" Grid.Row="3" AutoGenerateColumns="False" CanUserDeleteRows="True" CanUserAddRows="True"
+                        ItemsSource="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageAnalysisObj.TableMicrohardMeasur}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="100" Header="№ образца" Binding="{Binding SampleNumber}"/>
+                    <DataGridTextColumn Width="200" Header="Микротвердость HV" Binding="{Binding MicrohardnessHV}"/>
+                    <DataGridTextColumn Width="*" Header=""/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <DataGrid Grid.Column="0" Grid.Row="4" AutoGenerateColumns="False" CanUserDeleteRows="True" CanUserAddRows="True"
+                        ItemsSource="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageAnalysisObj.TableEbsdMicrostrAnalysis}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="90" Header="№ образца" Binding="{Binding SampleNumber}"/>
+                    <DataGridTextColumn Width="160" Header="Средн. знач., град." Binding="{Binding AverageMisorValue}"/>
+                    <DataGridTextColumn Width="160" Header="Размер зерен, мкм" Binding="{Binding GrainSize}"/>
+                    <DataGridTextColumn Width="*" Header="Размер кристаллографической текстуры" Binding="{Binding CrystallTextureSize}"/>
+                    <DataGridTextColumn Width="80" Header="ОЦК, %" Binding="{Binding BccUser}"/>
+                    <DataGridTextColumn Width="80" Header="ГЦК, %" Binding="{Binding FccUser}"/>
+
+                    <DataGridTemplateColumn Width="*" Header="Карта распределения ориентировок">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Margin="3" Width="40" Content="+"
+                                            Command="{Binding DataContext.ViewModelDevice.LoadFileMapOrient, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                            CommandParameter="{Binding}"/>
+                                    <TextBlock Margin="10 0 0 0" FontSize="14" Text="Файлов:"/>
+                                    <TextBlock Margin="10 0 0 0" FontSize="14" Text="{Binding FileMapOrient.CountFile}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Width="*" Header="Карта распределения фаз">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Margin="3" Width="40" Content="+"
+                                            Command="{Binding DataContext.ViewModelDevice.LoadFileMapPhase, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                            CommandParameter="{Binding}"/>
+                                    <TextBlock Margin="10 0 0 0" FontSize="14" Text="Файлов:"/>
+                                    <TextBlock Margin="10 0 0 0" FontSize="14" Text="{Binding FileMapPhase.CountFile}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Width="*" Header="Диаграммы разориентировок фаз">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Margin="3" Width="40" Content="+"
+                                            Command="{Binding DataContext.ViewModelDevice.LoadFileDiagrPhase, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                            CommandParameter="{Binding}"/>
+                                    <TextBlock Margin="10 0 0 0" FontSize="14" Text="Файлов:"/>
+                                    <TextBlock Margin="10 0 0 0" FontSize="14" Text="{Binding FileDiagrPhase.CountFile}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>
+
+
+        </Grid>
+
+
+
+    </Grid>
+
+</UserControl>
+
+

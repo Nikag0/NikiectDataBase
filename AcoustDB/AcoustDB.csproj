@@ -1,0 +1,74 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DocumentFormat.OpenXml" Version="3.3.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.5" />
+    <PackageReference Include="Npgsql" Version="9.0.3" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="AsyncObservCollect">
+      <HintPath>bin\Debug\net8.0-windows7.0\AsyncObservCollect.dll</HintPath>
+    </Reference>
+    <Reference Include="BaseStyleWpfControl">
+      <HintPath>bin\Debug\net8.0-windows7.0\BaseStyleWpfControl.dll</HintPath>
+    </Reference>
+    <Reference Include="ChromeBar">
+      <HintPath>bin\Debug\net8.0-windows7.0\ChromeBar.dll</HintPath>
+    </Reference>
+    <Reference Include="ColorsPackTheme">
+      <HintPath>bin\Debug\net8.0-windows7.0\ColorsPackTheme.dll</HintPath>
+    </Reference>
+    <Reference Include="ConvertersForWpf">
+      <HintPath>bin\Debug\net8.0-windows7.0\ConvertersForWpf.dll</HintPath>
+    </Reference>
+    <Reference Include="CustomMessageBox">
+      <HintPath>bin\Debug\net8.0-windows7.0\CustomMessageBox.dll</HintPath>
+    </Reference>
+    <Reference Include="CustomStyleWpfControl">
+      <HintPath>bin\Debug\net8.0-windows7.0\CustomStyleWpfControl.dll</HintPath>
+    </Reference>
+    <Reference Include="EnumCollection">
+      <HintPath>bin\Debug\net8.0-windows7.0\EnumCollection.dll</HintPath>
+    </Reference>
+    <Reference Include="ErrorsHandlerWork">
+      <HintPath>bin\Debug\net8.0-windows7.0\ErrorsHandlerWork.dll</HintPath>
+    </Reference>
+    <Reference Include="ICommandForWpf">
+      <HintPath>bin\Debug\net8.0-windows7.0\ICommandForWpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Infrastructure">
+      <HintPath>bin\Debug\net8.0-windows7.0\Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="InfrastructureData">
+      <HintPath>bin\Debug\net8.0-windows7.0\InfrastructureData.dll</HintPath>
+    </Reference>
+    <Reference Include="INotifyChangedCustom">
+      <HintPath>bin\Debug\net8.0-windows7.0\INotifyChangedCustom.dll</HintPath>
+    </Reference>
+    <Reference Include="ModelsForCollectionItems">
+      <HintPath>bin\Debug\net8.0-windows7.0\ModelsForCollectionItems.dll</HintPath>
+    </Reference>
+    <Reference Include="NumericUpDownCustom">
+      <HintPath>bin\Debug\net8.0-windows7.0\NumericUpDownCustom.dll</HintPath>
+    </Reference>
+    <Reference Include="PrintFile">
+      <HintPath>bin\Debug\net8.0-windows7.0\PrintFile.dll</HintPath>
+    </Reference>
+    <Reference Include="SaveConfigObject">
+      <HintPath>bin\Debug\net8.0-windows7.0\SaveConfigObject.dll</HintPath>
+    </Reference>
+    <Reference Include="SerializationObject">
+      <HintPath>bin\Debug\net8.0-windows7.0\SerializationObject.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

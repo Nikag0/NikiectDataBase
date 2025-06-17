@@ -1,0 +1,87 @@
+﻿<UserControl x:Class="AcoustDB.UserControls.ModeControlObjView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AcoustDB.UserControls"
+              
+            xmlns:viewmodels="clr-namespace:ViewModels" 
+            d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
+  
+            mc:Ignorable="d" 
+            d:DesignHeight="800" d:DesignWidth="1600">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="100*"/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="400"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="100*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" TextWrapping="Wrap" TextAlignment="Center" Text="Вид контроля"/>
+            <ComboBox Grid.Column="1" Margin="5" SelectedIndex="{Binding ViewModelDevice.CurUsedControl}">
+                <ComboBoxItem Content="Ультразвуковой контроль"/>
+                <ComboBoxItem Content="Томографический контроль"/>
+                <ComboBoxItem Content="Акустико-эмиссионный контроль"/>
+            </ComboBox>
+
+        </Grid>
+
+        <local:UltrasonicTestingMethodView Grid.Row="1">
+            <local:UltrasonicTestingMethodView.Style>
+                <Style TargetType="local:UltrasonicTestingMethodView">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ViewModelDevice.CurUsedControl}" Value="0">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </local:UltrasonicTestingMethodView.Style>
+        </local:UltrasonicTestingMethodView>
+
+        <local:TomographicTestingMethodView Grid.Row="1">
+            <local:TomographicTestingMethodView.Style>
+                <Style TargetType="local:TomographicTestingMethodView">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ViewModelDevice.CurUsedControl}" Value="1">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </local:TomographicTestingMethodView.Style>
+        </local:TomographicTestingMethodView>
+
+        <local:AcousticEmissionTestingMethodView Grid.Row="1">
+            <local:AcousticEmissionTestingMethodView.Style>
+                <Style TargetType="local:AcousticEmissionTestingMethodView">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ViewModelDevice.CurUsedControl}" Value="2">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </local:AcousticEmissionTestingMethodView.Style>
+        </local:AcousticEmissionTestingMethodView>
+
+
+
+    </Grid>
+
+</UserControl>
+

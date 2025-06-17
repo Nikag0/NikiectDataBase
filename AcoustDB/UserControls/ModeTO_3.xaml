@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="AcoustDB.UserControls.ModeTO_3"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AcoustDB.UserControls"
+             
+            xmlns:viewmodels="clr-namespace:ViewModels" 
+            d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
+  
+            mc:Ignorable="d" 
+            d:DesignHeight="800" d:DesignWidth="1600">
+    
+    <Grid>
+
+
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="100*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="1" Text="Данные о режимах термообработки"/>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="450"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="100*"/>
+                </Grid.ColumnDefinitions>
+
+                <ComboBox Grid.Column="0" Margin="5"/>
+                <Button Grid.Column="1" Margin="5" Content="Добавить в таблицу"/>
+
+            </Grid>
+
+            <DataGrid Grid.Column="0" Grid.Row="3" AutoGenerateColumns="False" CanUserDeleteRows="True" CanUserAddRows="True" 
+                          ItemsSource="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjHeatModes.TableDataHeatModes}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="150" Header="Вид" Binding="{Binding Type}" IsReadOnly="False"/>
+                    <DataGridTextColumn Width="200" Header="Скорость нагрева,℃/ч" Binding="{Binding HeatingRate}" IsReadOnly="False"/>
+                    <DataGridTextColumn Width="*" Header="Термпература выдержки, ℃" Binding="{Binding HoldingTemperature}" IsReadOnly="False"/>
+                    <DataGridTextColumn Width="*" Header="Длительность выдержки, ч" Binding="{Binding HoldingDuration}" IsReadOnly="False"/>
+                    <DataGridTextColumn Width="*" Header="Скорость охлаждления, ℃/ч" Binding="{Binding CoolingRate}" IsReadOnly="False"/>
+                    <DataGridTextColumn Width="*" Header="Среда охлаждения" Binding="{Binding CoolingMedium}" IsReadOnly="False"/>
+                    <DataGridTextColumn Width="*" Header="Количество циклов" Binding="{Binding NumberCycles}" IsReadOnly="False"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
+
+    </Grid>
+</UserControl>

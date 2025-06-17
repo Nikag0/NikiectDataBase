@@ -1,0 +1,61 @@
+﻿<Application x:Class="AcoustDB.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:AcoustDB"
+             StartupUri="MainWindow.xaml"
+             
+            xmlns:Convert="clr-namespace:Converters;assembly=ConvertersForWpf"
+            xmlns:ConvertEnum="clr-namespace:Converters.EnumConverters;assembly=ConvertersForWpf"
+             >
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+
+                <!--ColorTheme-->
+                <ResourceDictionary Source="pack://application:,,,/ColorsPackTheme;component/ColorTheme/DictionaryDark.xaml" />
+
+                <!--ResourcesXaml-->
+                <ResourceDictionary Source="pack://application:,,,/BaseStyleWpfControl;component/ResourcesXaml/StyleWindow.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/BaseStyleWpfControl;component/ResourcesXaml/StyleControlsBase.xaml"/>
+
+                <!--Controls-->
+                <ResourceDictionary Source="pack://application:,,,/NumericUpDownCustom;component/NumericUpDown.xaml"/>
+
+                <!--BaseStyle-->
+                <ResourceDictionary Source="pack://application:,,,/BaseStyleWpfControl;component/ResourcesXaml/ControlsStyle/BaseStyle/MenuItemTemplate.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/BaseStyleWpfControl;component/ResourcesXaml/ControlsStyle/BaseStyle/StyleTabControl.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/BaseStyleWpfControl;component/ResourcesXaml/ControlsStyle/BaseStyle/StyleToolTip.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/BaseStyleWpfControl;component/ResourcesXaml/ControlsStyle/BaseStyle/StyleDataGrid.xaml"/>
+
+                <ResourceDictionary Source="pack://application:,,,/BaseStyleWpfControl;component/ResourcesXaml/ControlsStyle/BaseStyle/StyleButton.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/BaseStyleWpfControl;component/ResourcesXaml/ControlsStyle/BaseStyle/StyleTextBox.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/BaseStyleWpfControl;component/ResourcesXaml/ControlsStyle/BaseStyle/StyleCheckBox.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/BaseStyleWpfControl;component/ResourcesXaml/ControlsStyle/BaseStyle/StyleComboBox.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/BaseStyleWpfControl;component/ResourcesXaml/ControlsStyle/BaseStyle/StyleDatePicker.xaml"/>
+
+
+            </ResourceDictionary.MergedDictionaries>
+
+            <!--Converters-->
+            <Convert:InverseBooleanConverter                    x:Key="InverseBooleanConvert" />
+            <Convert:ConvertValueToPoint                        x:Key="ConvValueToPoint" />
+
+            <ConvertEnum:StatusConnectConverter                 x:Key="StatusConnectConvert" />
+            <ConvertEnum:EnumToIntConverterTypeMode             x:Key="EnumIntConverterTypeMode" />
+            <ConvertEnum:EnumToIntConverterTypeSensor           x:Key="EnumIntConverterTypeSensor" />
+            <ConvertEnum:EnumToIntConverterRotationSensor       x:Key="EnumIntConverterRotationSensor" />
+            <ConvertEnum:StatusRotationSensorConverter          x:Key="StatRotationSensorConverter" />
+            <ConvertEnum:StatusTypeSensorConverter              x:Key="StatTypeSensorConverter" />
+            <ConvertEnum:EnumToIntConverterTypePartObjControl   x:Key="EnumIntConverterTypePartObjControl" />
+            <ConvertEnum:StatusTypePartObjControlConverter      x:Key="StatTypePartObjControlConverter" />
+            <ConvertEnum:StatusCameraRtspConverter              x:Key="StatCameraRtspConverter" />
+            <ConvertEnum:DescriptEnumConverterTypeSide          x:Key="DescriptEnumConvertTypeSide" />
+            <ConvertEnum:EnumToIntConverterTypeSensor_Altair    x:Key="EnumIntConverterTypeSensor_Altair" />
+            <ConvertEnum:EnumToIntConverterChannel              x:Key="EnumIntConverterChannel" />
+
+
+        </ResourceDictionary>
+    </Application.Resources>
+
+</Application>

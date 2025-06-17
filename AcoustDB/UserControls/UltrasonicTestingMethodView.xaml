@@ -1,0 +1,166 @@
+﻿<UserControl x:Class="AcoustDB.UserControls.UltrasonicTestingMethodView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AcoustDB.UserControls"
+             
+            xmlns:viewmodels="clr-namespace:ViewModels" 
+            d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
+  
+            mc:Ignorable="d" 
+            d:DesignHeight="800" d:DesignWidth="1600">
+    
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0"/>
+            <RowDefinition Height="500"/>
+            <RowDefinition Height="100*"/>
+        </Grid.RowDefinitions>
+
+        
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="700"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="100*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="230"/>
+                <RowDefinition Height="100*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Column="0" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100*"/>
+                    <ColumnDefinition Width="100*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="100*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Column="0" Grid.ColumnSpan="4" TextWrapping="Wrap" TextAlignment="Center" Text="Общие данные"/>
+
+                <TextBlock Grid.Column="0" Grid.Row="2" Text="Номер технологической карты"/>
+                <TextBlock Grid.Column="1" Grid.Row="2" Text="Наименование номартивного документа"/>
+                <TextBlock Grid.Column="0" Grid.Row="5" Text="Метод ультразвукового контроля"/>
+                <TextBlock Grid.Column="1" Grid.Row="5" Text="Организация, выполнившая контроль"/>
+
+                <TextBox Grid.Column="0" Grid.Row="3" Margin="5" 
+                           Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageNonDestructive.UltrasonicTestingMethod.GeneralDataTesting.TechnologCardNum}"/>
+                <TextBox Grid.Column="1" Grid.Row="3" Margin="5" 
+                           Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageNonDestructive.UltrasonicTestingMethod.GeneralDataTesting.NameRegulatoryDoc}"/>
+                <TextBox Grid.Column="0" Grid.Row="6" Margin="5" 
+                           Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageNonDestructive.UltrasonicTestingMethod.GeneralDataTesting.TestMethod}"/>
+                <TextBox Grid.Column="1" Grid.Row="6" Margin="5" 
+                           Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageNonDestructive.UltrasonicTestingMethod.GeneralDataTesting.OrganizationTesting}"/>
+
+            </Grid>
+
+            <TextBlock Grid.Column="2" Grid.Row="0" VerticalAlignment="Top" Text="Средства контроля"/>
+            <DataGrid Grid.Column="2" Grid.Row="0" Margin="0 30 0 0" AutoGenerateColumns="False" CanUserDeleteRows="False" CanUserAddRows="False"
+ItemsSource="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageNonDestructive.UltrasonicTestingMethod.TableTestingTools}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="400" Header="Вид средства" Binding="{Binding TypeTool}"/>
+                    <DataGridTextColumn Width="*" Header="Наименование" Binding="{Binding NameUserIn}"/>
+                    <DataGridTextColumn Width="*" Header="Зав. номер" Binding="{Binding SerialNumber}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <TextBlock Grid.Column="0" Grid.Row="1" VerticalAlignment="Top" Text="Параметры настройки оборудования и преобразователя"/>
+            <DataGrid Grid.Column="0" Grid.Row="1" Margin="0 30 0 0" AutoGenerateColumns="False" CanUserDeleteRows="False" CanUserAddRows="False"
+                       ItemsSource="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageNonDestructive.UltrasonicTestingMethod.TableEquipmentParameters}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="*" Header="Параметр" Binding="{Binding TypeTool}"/>
+                    <DataGridTextColumn Width="*" Header="Значение" Binding="{Binding NameUserIn}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <TextBlock Grid.Column="2" Grid.Row="1" VerticalAlignment="Top" Text="Параметры контроля"/>
+            <DataGrid Grid.Column="2" Grid.Row="1" Margin="0 30 0 0" AutoGenerateColumns="False" CanUserDeleteRows="False" CanUserAddRows="False"
+                       ItemsSource="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageNonDestructive.UltrasonicTestingMethod.TableTestingParameters}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="*" Header="Параметр" Binding="{Binding TypeTool}"/>
+                    <DataGridTextColumn Width="*" Header="Значение" Binding="{Binding NameUserIn}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
+
+        <TextBlock Grid.Column="0" Grid.Row="2" VerticalAlignment="Top" Text="Результаты контроля"/>
+        <DataGrid Grid.Column="0" Grid.Row="2" Margin="0 30 0 0" AutoGenerateColumns="False" CanUserDeleteRows="True" CanUserAddRows="True"
+            ItemsSource="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageNonDestructive.UltrasonicTestingMethod.TableTestingResults}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*" Header="Зона контроля" Binding="{Binding ParamString_0}"/>
+                <DataGridTextColumn Width="*" Header="Местополжение отражателя по координате Х, мм" Binding="{Binding ParamString_0}"/>
+                <DataGridTextColumn Width="*" Header="Местополжение отражателя по координате Y, мм" Binding="{Binding ParamString_1}"/>
+                <DataGridTextColumn Width="*" Header="Глубина залегания, мм" Binding="{Binding ParamString_2}"/>
+                <DataGridTextColumn Width="*" Header="Условная протяженность, мм" Binding="{Binding ParamString_3}"/>
+                <DataGridTextColumn Width="*" Header="Максимальная амплитуда эхо-сигнала А, дБ" Binding="{Binding ParamString_4}"/>
+                <DataGridTextColumn Width="*" Header="Уровень падения амплитуды , дБ (%)" Binding="{Binding ParamString_5}"/>
+                <DataGridTextColumn Width="*" Header="Расстояние между соседними несплошностями, мм" Binding="{Binding ParamString_6}"/>
+
+                <DataGridTemplateColumn Width="*" Header="А-скан">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Margin="3" Width="40" Content="+"
+                                      Command="{Binding DataContext.ViewModelDevice.LoadFileAScanDataUz, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                      CommandParameter="{Binding}"/>
+                                <TextBlock Margin="10 0 0 0" FontSize="14" Text="Файлов:"/>
+                                <TextBlock Margin="10 0 0 0" FontSize="14" Text="{Binding FileUser_0.CountFile}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Width="*" Header="B-скан">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Margin="3" Width="40" Content="+"
+                                      Command="{Binding DataContext.ViewModelDevice.LoadFileBScanDataUz, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                      CommandParameter="{Binding}"/>
+                                <TextBlock Margin="10 0 0 0" FontSize="14" Text="Файлов:"/>
+                                <TextBlock Margin="10 0 0 0" FontSize="14" Text="{Binding FileUser_1.CountFile}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Width="*" Header="C-скан">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Margin="3" Width="40" Content="+"
+                                      Command="{Binding DataContext.ViewModelDevice.LoadFileCScanDataUz, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                      CommandParameter="{Binding}"/>
+                                <TextBlock Margin="10 0 0 0" FontSize="14" Text="Файлов:"/>
+                                <TextBlock Margin="10 0 0 0" FontSize="14" Text="{Binding FileUser_2.CountFile}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+
+    </Grid>
+</UserControl>

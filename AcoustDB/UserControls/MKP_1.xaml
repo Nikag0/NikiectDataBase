@@ -1,0 +1,307 @@
+﻿<UserControl x:Class="AcoustDB.UserControls.MKP_1"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AcoustDB.UserControls"
+             
+            xmlns:viewmodels="clr-namespace:ViewModels" 
+            d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
+  
+            mc:Ignorable="d" 
+            d:DesignHeight="800" d:DesignWidth="1600">
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="350"/>
+            <RowDefinition Height="100*"/>
+        </Grid.RowDefinitions>
+
+
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100*"/>
+                <ColumnDefinition Width="100*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="100*"/>
+                </Grid.RowDefinitions>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="100*"/>
+                        <ColumnDefinition Width="100*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" TextWrapping="Wrap" Text="Паспорт качества"/>
+                    <!--<ComboBox Grid.Column="1" Margin="5"/>-->
+                    <!--<TextBlock  Grid.Column="1" Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.Passport.FilePass.FileInfo[0].NameFile}"/>-->
+                    <TextBlock  Grid.Column="1" Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.Passport.FilePass}"/>
+                    <Button Grid.Column="2" Margin="5" Content="Загрузить новый" Command="{Binding ViewModelDevice.LoadQualityPassport}" CommandParameter="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.Passport}"/>
+
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="100*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="1" Text="Основные сведения о МПК"/>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="250"/>
+                            <ColumnDefinition Width="100*"/>
+                            <ColumnDefinition Width="100*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <ComboBox Grid.Column="0"  Margin="5" 
+                           ItemsSource="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.CollectionBasicInfoMPK}" 
+                           SelectedItem="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.BasicInfoMPK}"
+                           DisplayMemberPath="NameThis"
+                        />
+
+                        <TextBlock Grid.Column="1" Grid.Row="0" Margin="5" Foreground="{DynamicResource TextColorAnswer}" Text="Введите новое имя">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.BasicInfoMPK.NameThis}" Value="">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                        <TextBox Grid.Column="1" Margin="5" Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.BasicInfoMPK.NameThis, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Button Grid.Column="2" Margin="5" Content="Создать"/>
+
+                    </Grid>
+
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="5"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="5"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="5"/>
+                            <RowDefinition Height="100*"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Марка МПК"/>
+                        <TextBlock Grid.Column="1" Grid.Row="0" Text="Номер партии"/>
+                        <TextBlock Grid.Column="0" Grid.Row="3" Text="Вид упаковки"/>
+                        <TextBlock Grid.Column="1" Grid.Row="3" Text="Производитель"/>
+                        <TextBlock Grid.Column="0" Grid.Row="6" Text="Дата изготовления"/>
+                        <TextBlock Grid.Column="1" Grid.Row="6" Text="Нормативный документ (документы)"/>
+
+                        <TextBox Grid.Column="0" Grid.Row="1" Margin="5" Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.BasicInfoMPK.MarkMPK.NameThis}"/>
+                        <TextBox Grid.Column="1" Grid.Row="1" Margin="5" Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.BasicInfoMPK.BatchNumber}"/>
+                        <TextBox Grid.Column="0" Grid.Row="4" Margin="5" Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.BasicInfoMPK.TypePackaging}"/>
+                        <TextBox Grid.Column="1" Grid.Row="4" Margin="5" Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.BasicInfoMPK.Manufacture}"/>
+                        <TextBox Grid.Column="0" Grid.Row="7" Margin="5" Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.BasicInfoMPK.DateRelease}"/>
+                        <TextBox Grid.Column="1" Grid.Row="7" Margin="5" Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.BasicInfoMPK.NormatDoc}"/>
+
+                    </Grid>
+
+
+                </Grid>
+
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="100*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="1" Text="Технические характеристики МПК"/>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="250"/>
+                            <ColumnDefinition Width="100*"/>
+                            <ColumnDefinition Width="100*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <ComboBox Grid.Column="0"  Margin="5" 
+                            ItemsSource="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.CollectionTechnCharcsMPK}" 
+                            SelectedItem="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.TechnCharcsMPK}"
+                            DisplayMemberPath="NameThis"
+                        />     
+                        <TextBlock Grid.Column="1" Grid.Row="0" Margin="5" Foreground="{DynamicResource TextColorAnswer}" Text="Введите новое имя">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.TechnCharcsMPK.NameThis}" Value="">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                        <TextBox Grid.Column="1" Margin="5" Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.TechnCharcsMPK.NameThis, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Button Grid.Column="2" Margin="5" Content="Создать"/>
+
+                    </Grid>
+
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100*"/>
+                            <ColumnDefinition Width="100*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="5"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="5"/>
+                            <RowDefinition Height="100*"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Размер гранул, мкм"/>
+                        <TextBlock Grid.Column="1" Grid.Row="0" Text="Насыпная плотность, г/см3"/>
+                        <TextBlock Grid.Column="0" Grid.Row="3" Text="Текучесть, с"/>
+                        <TextBlock Grid.Column="1" Grid.Row="3" Text="Распределение частиц, % не более"/>
+
+                        <TextBox Grid.Column="0" Grid.Row="1" Margin="5" Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.TechnCharcsMPK.GranuleSize}"/>
+                        <TextBox Grid.Column="1" Grid.Row="1" Margin="5" Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.TechnCharcsMPK.BulkDensity}"/>
+                        <TextBox Grid.Column="0" Grid.Row="4" Margin="5" Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.TechnCharcsMPK.Fluidity}"/>
+                        <TextBox Grid.Column="1" Grid.Row="4" Margin="5" Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.TechnCharcsMPK.ParticleDistribution}"/>
+
+                    </Grid>
+
+
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100*"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="100*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="100*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="1" Text="Характеристика формы частиц МПК"/>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="450"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="100*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <ComboBox Grid.Column="0"  Margin="5" 
+                           ItemsSource="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.CollectionParticleShape}" 
+                           SelectedItem="{Binding ViewModelDevice.SelectTableParticleShape}"
+                           DisplayMemberPath="NameThis"
+                    />
+
+                    <Button Grid.Column="1" Margin="5" Content="Добавить в таблицу" Command="{Binding ViewModelDevice.AddTableParticleShape}" />
+
+                </Grid>
+
+                <DataGrid Grid.Column="0" Grid.Row="3" AutoGenerateColumns="False" CanUserDeleteRows="True" CanUserAddRows="True"
+                          ItemsSource="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.TableParticleShape}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="*" Header="Форма" Binding="{Binding Shape.NameThis}"/>
+                        <DataGridTextColumn Width="*" Header="Сод. частиц типовой формы, %" Binding="{Binding ParticleContent}"/>
+                        <DataGridTextColumn Width="*" Header="Референсное значение, % масс" Binding="{Binding ReferenceValue}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+            </Grid>
+
+            <Grid Grid.Row="0" Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="100*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="1" Text="Химический состав МПК"/>
+                
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="450"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="100*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <ComboBox Grid.Column="0" Margin="5"/>
+                    <Button Grid.Column="1" Margin="5" Content="Добавить в таблицу"/>
+
+                </Grid>
+
+                <DataGrid Grid.Column="0" Grid.Row="3" AutoGenerateColumns="False" CanUserDeleteRows="True" CanUserAddRows="True" 
+                          ItemsSource="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.CompositMPKs}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="*" Header="Элемент" Binding="{Binding Element}"/>
+                        <DataGridTextColumn Width="*" Header="Факт., % масс" Binding="{Binding FactValue}"/>
+                        <DataGridTextColumn Width="*" Header="Референсное значение, % масс" Binding="{Binding ReferenceValue}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+
+            </Grid>
+
+        </Grid>
+
+    </Grid>
+</UserControl>

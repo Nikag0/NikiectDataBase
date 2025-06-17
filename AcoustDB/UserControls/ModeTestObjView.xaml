@@ -1,0 +1,448 @@
+﻿<UserControl x:Class="AcoustDB.UserControls.ModeTestObjView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AcoustDB.UserControls"
+             
+            xmlns:viewmodels="clr-namespace:ViewModels" 
+            d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
+  
+            mc:Ignorable="d" 
+            d:DesignHeight="800" d:DesignWidth="1600">
+
+    <!--<UserControl.DataContext>
+        <viewmodels:MainViewModel/>
+    </UserControl.DataContext>-->
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="280"/>
+            <RowDefinition Height="100*"/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="600"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="100*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" TextWrapping="Wrap" TextAlignment="Center" Text="Вид испытания"/>
+            <ComboBox Grid.Column="1" Margin="5" SelectedIndex="{Binding ViewModelDevice.CurUsedGeneralDescript}">
+                <ComboBoxItem Content="Статические испытания на растяжение при комнатной температуре"/>
+                <ComboBoxItem Content="Статические испытания на растяжение при повышенной температуре"/>
+                <ComboBoxItem Content="Испытания на ударную вязкость"/>
+                <ComboBoxItem Content="Статические испытания на длительную прочность"/>
+            </ComboBox>
+            <CheckBox Grid.Column="2" Content="Испытание проведено" IsChecked="{Binding ViewModelDevice.GeneralDescriptStage2.IsEnable}"/>
+
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100*"/>
+                <ColumnDefinition Width="100*"/>
+                <ColumnDefinition Width="100*"/>
+                <ColumnDefinition Width="100*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="100*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Column="0" Grid.ColumnSpan="4" TextWrapping="Wrap" TextAlignment="Center" Text="Общая информация"/>
+
+            <TextBlock Grid.Column="0" Grid.Row="2" Text="Исполнитель испытаний"/>
+            <TextBlock Grid.Column="1" Grid.Row="2" Text="Объект испытаний"/>
+            <TextBlock Grid.Column="2" Grid.Row="2" Text="Вид испытаний"/>
+            <TextBlock Grid.Column="3" Grid.Row="2" Text="Окружающая среда"/>
+            <TextBlock Grid.Column="0" Grid.Row="5" Text="Особые условия испытаний"/>
+            <TextBlock Grid.Column="1" Grid.Row="5" Text="Нормативная документация"/>
+            <TextBlock Grid.Column="2" Grid.Row="5" Text="Образцы для испытаний"/>
+            <TextBlock Grid.Column="3" Grid.Row="5" Text="№ образцов"/>
+            <TextBlock Grid.Column="0" Grid.Row="8" Text="Используемое СИ/ИО"/>
+
+            <TextBox Grid.Column="0" Grid.Row="3" Margin="5" Text="{Binding ViewModelDevice.GeneralDescriptStage2.TestPerformer}"/>
+            <TextBox Grid.Column="1" Grid.Row="3" Margin="5" Text="{Binding ViewModelDevice.GeneralDescriptStage2.TestObject}"/>
+            <TextBox Grid.Column="2" Grid.Row="3" Margin="5" Text="{Binding ViewModelDevice.GeneralDescriptStage2.TestType}"/>
+            <TextBox Grid.Column="3" Grid.Row="3" Margin="5" Text="{Binding ViewModelDevice.GeneralDescriptStage2.Environment}"/>
+            <TextBox Grid.Column="0" Grid.Row="6" Margin="5" Text="{Binding ViewModelDevice.GeneralDescriptStage2.SpecialTestConditions}"/>
+            <TextBox Grid.Column="1" Grid.Row="6" Margin="5" Text="{Binding ViewModelDevice.GeneralDescriptStage2.RegulatoryDocumentation}"/>
+            <TextBox Grid.Column="2" Grid.Row="6" Margin="5" Text="{Binding ViewModelDevice.GeneralDescriptStage2.TestSamples}"/>
+            <TextBox Grid.Column="3" Grid.Row="6" Margin="5" Text="{Binding ViewModelDevice.GeneralDescriptStage2.SampleNumber}"/>
+            <TextBox Grid.Column="0" Grid.Row="9" Margin="5" Text="{Binding ViewModelDevice.GeneralDescriptStage2.UsedMeasurInstrument}"/>
+
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+
+                <RowDefinition>
+                    <RowDefinition.Style>
+                        <Style TargetType="RowDefinition">
+                            <Setter Property="Height" Value="0"/>
+
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ViewModelDevice.CurUsedGeneralDescript}" Value="0">
+                                    <Setter Property="Height" Value="100*"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </RowDefinition.Style>
+                </RowDefinition>
+                <RowDefinition>
+                    <RowDefinition.Style>
+                        <Style TargetType="RowDefinition">
+                            <Setter Property="Height" Value="0"/>
+
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ViewModelDevice.CurUsedGeneralDescript}" Value="1">
+                                    <Setter Property="Height" Value="100*"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </RowDefinition.Style>
+                </RowDefinition>
+                <RowDefinition>
+                    <RowDefinition.Style>
+                        <Style TargetType="RowDefinition">
+                            <Setter Property="Height" Value="0"/>
+
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ViewModelDevice.CurUsedGeneralDescript}" Value="2">
+                                    <Setter Property="Height" Value="100*"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </RowDefinition.Style>
+                </RowDefinition>
+                <RowDefinition>
+                    <RowDefinition.Style>
+                        <Style TargetType="RowDefinition">
+                            <Setter Property="Height" Value="0"/>
+
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ViewModelDevice.CurUsedGeneralDescript}" Value="3">
+                                    <Setter Property="Height" Value="100*"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </RowDefinition.Style>
+                </RowDefinition>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Column="0" Grid.Row="0" Text="Результаты испытаний"/>
+            <Button Grid.Column="0" Grid.Row="0" Margin="10 0 0 0" HorizontalAlignment="Left" Width="250" Height="25" Content="Расчет СКО/ср.зн." Command="{Binding ViewModelDevice.CalcParamStage2SkoAver}"/>
+
+            <Grid Grid.Column="0" Grid.Row="1" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+
+                <DataGrid Grid.Column="0" Grid.Row="1" AutoGenerateColumns="False" CanUserDeleteRows="True" CanUserAddRows="True"
+                            ItemsSource="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageTestObjView.ResultsStaticLowTemp.TableResultsStatic}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="100" Header="№ образца" Binding="{Binding SpecimenNumber}"/>
+                        <DataGridTextColumn Width="*" Header="Направление вырезки (Х или Z)" Binding="{Binding DirectionCutting}"/>
+                        <DataGridTextColumn Width="100" Header="D, (мм)" Binding="{Binding DUser}"/>
+                        <DataGridTextColumn Width="100" Header="l0, (мм)" Binding="{Binding LUser}"/>
+                        <DataGridTextColumn Width="*" Header="Предел текучести, σ0,2, (МПа)" Binding="{Binding YieldStrength}"/>
+                        <DataGridTextColumn Width="*" Header="Предел прочности, σв,(МПа)" Binding="{Binding UltimateStrength}"/>
+                        <DataGridTextColumn Width="170" Header="Отн. удлинение, ẟ5 (%)" Binding="{Binding RelativeElongation}"/>
+                        <DataGridTextColumn Width="160" Header="Отн. сужение, ѱ (%)" Binding="{Binding RelativeReductionArea}"/>
+
+                        <DataGridTemplateColumn Width="200" Header="Файл">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Margin="3" Width="40" Content="+"
+                                Command="{Binding DataContext.ViewModelDevice.LoadGraphStressStage2Low, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                CommandParameter="{Binding}"/>
+                                        <TextBlock Margin="10 0 0 0" FontSize="11" Text="{Binding FileInfo.FileInfo[0].NameFile}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="170"/>
+                        <ColumnDefinition Width="160"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" Text="Ср.зн. / СКО"/>
+
+                    <StackPanel Grid.Column="4" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageTestObjView.StatisticsResults.YieldStrengthLow.Average}"/>
+                        <TextBlock Text=" / "/>
+                        <TextBlock Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageTestObjView.StatisticsResults.YieldStrengthLow.StandardDeviation}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="5" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageTestObjView.StatisticsResults.UltimateStrengthLow.Average}"/>
+                        <TextBlock Text=" / "/>
+                        <TextBlock Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageTestObjView.StatisticsResults.UltimateStrengthLow.StandardDeviation}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="6" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageTestObjView.StatisticsResults.RelativeElongationLow.Average}"/>
+                        <TextBlock Text=" / "/>
+                        <TextBlock Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageTestObjView.StatisticsResults.RelativeElongationLow.StandardDeviation}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="7" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageTestObjView.StatisticsResults.RelativeReductionAreaLow.Average}"/>
+                        <TextBlock Text=" / "/>
+                        <TextBlock Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageTestObjView.StatisticsResults.RelativeReductionAreaLow.StandardDeviation}"/>
+                    </StackPanel>
+
+                </Grid>
+
+            </Grid>
+
+            <Grid Grid.Column="0" Grid.Row="2" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+
+                <DataGrid Grid.Column="0" Grid.Row="1" AutoGenerateColumns="False" CanUserDeleteRows="True" CanUserAddRows="True"
+                     ItemsSource="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageTestObjView.ResultsStaticHighTemp.TableResultsStatic}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="100" Header="№ образца" Binding="{Binding SpecimenNumber}"/>
+                        <DataGridTextColumn Width="*" Header="Направление вырезки (Х или Z)" Binding="{Binding DirectionCutting}"/>
+                        <DataGridTextColumn Width="100" Header="D, (мм)" Binding="{Binding DUser}"/>
+                        <DataGridTextColumn Width="100" Header="l0, (мм)" Binding="{Binding LUser}"/>
+                        <DataGridTextColumn Width="*" Header="Предел текучести, σ0,2, (МПа)" Binding="{Binding YieldStrength}"/>
+                        <DataGridTextColumn Width="*" Header="Предел прочности, σв,(МПа)" Binding="{Binding UltimateStrength}"/>
+                        <DataGridTextColumn Width="170" Header="Отн. удлинение, ẟ5 (%)" Binding="{Binding RelativeElongation}"/>
+                        <DataGridTextColumn Width="160" Header="Отн. сужение, ѱ (%)" Binding="{Binding RelativeReductionArea}"/>
+
+                        <DataGridTemplateColumn Width="200" Header="Файл">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Margin="3" Width="40" Content="+"
+                                            Command="{Binding DataContext.ViewModelDevice.LoadGraphStressStage2High, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                            CommandParameter="{Binding}"/>
+                                        <TextBlock Margin="10 0 0 0" FontSize="11" Text="{Binding FileInfo.FileInfo[0].NameFile}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="170"/>
+                        <ColumnDefinition Width="160"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" Text="Ср.зн. / СКО"/>
+
+                    <StackPanel Grid.Column="4" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageTestObjView.StatisticsResults.YieldStrength.Average}"/>
+                        <TextBlock Text=" / "/>
+                        <TextBlock Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageTestObjView.StatisticsResults.YieldStrength.StandardDeviation}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="5" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageTestObjView.StatisticsResults.UltimateStrength.Average}"/>
+                        <TextBlock Text=" / "/>
+                        <TextBlock Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageTestObjView.StatisticsResults.UltimateStrength.StandardDeviation}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="6" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageTestObjView.StatisticsResults.RelativeElongation.Average}"/>
+                        <TextBlock Text=" / "/>
+                        <TextBlock Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageTestObjView.StatisticsResults.RelativeElongation.StandardDeviation}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="7" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageTestObjView.StatisticsResults.RelativeReductionArea.Average}"/>
+                        <TextBlock Text=" / "/>
+                        <TextBlock Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageTestObjView.StatisticsResults.RelativeReductionArea.StandardDeviation}"/>
+                    </StackPanel>
+
+                </Grid>
+
+            </Grid>
+
+            <Grid Grid.Column="0" Grid.Row="3" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+
+                <DataGrid Grid.Column="0" Grid.Row="1" AutoGenerateColumns="False" CanUserDeleteRows="True" CanUserAddRows="True"
+                    ItemsSource="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageTestObjView.ResultImpact.TableResultImpact}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="100" Header="№ образца" Binding="{Binding SpecimenNumber}"/>
+                        <DataGridTextColumn Width="190" Header="Напр. вырезки (Х или Z)" Binding="{Binding DirectionCutting}"/>
+                        <DataGridTextColumn Width="140" Header="Ширина, В (мм)	" Binding="{Binding SpecimenWidth}"/>
+                        <DataGridTextColumn Width="140" Header="Высота, Н (мм)" Binding="{Binding SpecimenHeight}"/>
+                        <DataGridTextColumn Width="200" Header="Высота раб. сеч., Н1 (мм)" Binding="{Binding HeightWorkingSection}"/>
+                        <DataGridTextColumn Width="*" Header="Площадь попер. сеч., S0 cм2" Binding="{Binding CrossSectionalArea}"/>
+                        <DataGridTextColumn Width="150" Header="Работа удара, К Дж" Binding="{Binding ImpactWork}"/>
+                        <DataGridTextColumn Width="*" Header="Ударная вязкость, КС Дж/см2" Binding="{Binding ImpactStrength}"/>
+                        <DataGridTextColumn Width="140" Header="Примечание" Binding="{Binding NoteUser}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="190"/>
+                        <ColumnDefinition Width="140"/>
+                        <ColumnDefinition Width="140"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="140"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" Text="Ср.зн. / СКО"/>
+
+                    <StackPanel Grid.Column="5" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageTestObjView.StatisticsResults.CrossSectionalArea.Average}"/>
+                        <TextBlock Text=" / "/>
+                        <TextBlock Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageTestObjView.StatisticsResults.CrossSectionalArea.StandardDeviation}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="7" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageTestObjView.StatisticsResults.ImpactStrength.Average}"/>
+                        <TextBlock Text=" / "/>
+                        <TextBlock Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageTestObjView.StatisticsResults.ImpactStrength.StandardDeviation}"/>
+                    </StackPanel>
+                </Grid>
+
+            </Grid>
+
+            <Grid Grid.Column="0" Grid.Row="4" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+
+                <DataGrid Grid.Column="0" Grid.Row="1" AutoGenerateColumns="False" CanUserDeleteRows="True" CanUserAddRows="True"
+                    ItemsSource="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageTestObjView.ResultsCreep.TableResultsCreep}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="100" Header="№ образца" Binding="{Binding SpecimenNumber}"/>
+                        <DataGridTextColumn Width="190" Header="Напр. вырезки (Х или Z)" Binding="{Binding DirectionCutting}"/>
+                        <DataGridTextColumn Width="120" Header="D до исп., (мм)" Binding="{Binding DBefore}"/>
+                        <DataGridTextColumn Width="120" Header="l0 до исп., (мм)" Binding="{Binding LBefore}"/>
+                        <DataGridTextColumn Width="140" Header="D после исп., (мм)" Binding="{Binding DAfter}"/>
+                        <DataGridTextColumn Width="140" Header="l0 после исп., (мм)" Binding="{Binding LAfter}"/>
+                        <DataGridTextColumn Width="110" Header="Напр., МПа" Binding="{Binding Stress}"/>
+                        <DataGridTextColumn Width="*"   Header="Длит. исп. до разр., ч" Binding="{Binding TestDurationBeforeFailure}"/>
+                        <DataGridTextColumn Width="190" Header="Отн. удлинение, ẟ5 (%)" Binding="{Binding RelativeElongation}"/>
+                        <DataGridTextColumn Width="*"   Header="Отн. сужение, ѱ (%)" Binding="{Binding RelativeReductionArea}"/>
+                        <DataGridTextColumn Width="110" Header="Примечание" Binding="{Binding NoteUSer}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="190"/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="140"/>
+                        <ColumnDefinition Width="140"/>
+                        <ColumnDefinition Width="110"/>
+                        <ColumnDefinition Width="*"  />
+                        <ColumnDefinition Width="190"/>
+                        <ColumnDefinition Width="*"  />
+                        <ColumnDefinition Width="110"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" Text="Ср.зн. / СКО"/>
+
+                    <StackPanel Grid.Column="6" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageTestObjView.StatisticsResults.Stress.Average}"/>
+                        <TextBlock Text=" / "/>
+                        <TextBlock Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageTestObjView.StatisticsResults.Stress.StandardDeviation}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="7" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageTestObjView.StatisticsResults.TestDurationBeforeFailure.Average}"/>
+                        <TextBlock Text=" / "/>
+                        <TextBlock Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageTestObjView.StatisticsResults.TestDurationBeforeFailure.StandardDeviation}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="8" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageTestObjView.StatisticsResults.RelativeElongation_1.Average}"/>
+                        <TextBlock Text=" / "/>
+                        <TextBlock Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageTestObjView.StatisticsResults.RelativeElongation_1.StandardDeviation}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="9" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageTestObjView.StatisticsResults.RelativeReductionArea_1.Average}"/>
+                        <TextBlock Text=" / "/>
+                        <TextBlock Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageTestObjView.StatisticsResults.RelativeReductionArea_1.StandardDeviation}"/>
+                    </StackPanel>
+
+                </Grid>
+
+            </Grid>
+
+        </Grid>
+
+
+    </Grid>
+
+</UserControl>

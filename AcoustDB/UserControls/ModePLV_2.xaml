@@ -1,0 +1,161 @@
+﻿<UserControl x:Class="AcoustDB.UserControls.ModePLV_2"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AcoustDB.UserControls"
+             
+             xmlns:viewmodels="clr-namespace:ViewModels" 
+             d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
+  
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="1600">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="100*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="100*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="1" Text="Общие данные "/>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="100*"/>
+                    <ColumnDefinition Width="100*"/>
+                </Grid.ColumnDefinitions>
+
+                <ComboBox Grid.Column="0" Margin="5"/>
+                <TextBox Grid.Column="1" Margin="5"/>
+                <Button Grid.Column="2" Margin="5" Content="Создать"/>
+
+            </Grid>
+
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100*"/>
+                    <ColumnDefinition Width="100*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="100*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Column="0" Grid.Row="0" Text="Оборудование"/>
+                <TextBlock Grid.Column="1" Grid.Row="0" Text="Производитель"/>
+                <TextBlock Grid.Column="0" Grid.Row="3" Text="Оператор"/>
+                <TextBlock Grid.Column="1" Grid.Row="3" Text="Дата"/>
+
+                <TextBox Grid.Column="0" Grid.Row="1" Margin="5" Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjModePLV.GenInforModesPLV.Equipment}"/>
+                <TextBox Grid.Column="1" Grid.Row="1" Margin="5" Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjModePLV.GenInforModesPLV.Manufacture}"/>
+                <TextBox Grid.Column="0" Grid.Row="4" Margin="5" Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjModePLV.GenInforModesPLV.OperatorUser}"/>
+                <TextBox Grid.Column="1" Grid.Row="4" Margin="5" Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjModePLV.GenInforModesPLV.DateRelease}"/>
+
+            </Grid>
+
+
+        </Grid>
+
+
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="100*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="1" Text="Технологические режимы"/>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="100*"/>
+                    <ColumnDefinition Width="100*"/>
+                </Grid.ColumnDefinitions>
+
+                <ComboBox Grid.Column="0" Margin="5"/>
+                <TextBox Grid.Column="1" Margin="5"/>
+                <Button Grid.Column="2" Margin="5" Content="Создать"/>
+
+            </Grid>
+
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100*"/>
+                    <ColumnDefinition Width="100*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="100*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Column="0" Grid.Row="0" Text="Мощность излучения лазера, Вт"/>
+                <TextBlock Grid.Column="1" Grid.Row="0" Text="Скорость движения лазерной головки, мм/с"/>
+                <TextBlock Grid.Column="0" Grid.Row="3" Text="Объемный расход инертного газа с МПК, л/мин"/>
+                <TextBlock Grid.Column="1" Grid.Row="3" Text="Пауза между формир. соседних валиков, с"/>
+                <TextBlock Grid.Column="0" Grid.Row="6" Text="Смещение по ширине, мм"/>
+                <TextBlock Grid.Column="1" Grid.Row="6" Text="Смещение по высоте, мм"/>
+                <TextBlock Grid.Column="0" Grid.Row="9" Text="Расход МПК, г/мин"/>
+                <TextBlock Grid.Column="1" Grid.Row="9" Text="КЗП трубок перед процессом, %"/>
+                <TextBlock Grid.Column="0" Grid.Row="12" Text="КЗУ процесса, %"/>
+                <TextBlock Grid.Column="1" Grid.Row="12" Text="Ширина валика, мм"/>
+                <TextBlock Grid.Column="0" Grid.Row="15" Text="Диаметр валика,мм"/>
+
+                <TextBox Grid.Column="0" Grid.Row="1" Margin="5" Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjModePLV.TechnModesPLV.LaserPower.ParamString}"/>
+                <TextBox Grid.Column="1" Grid.Row="1" Margin="5" Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjModePLV.TechnModesPLV.LaserHeadSpeed.ParamString}"/>
+                <TextBox Grid.Column="0" Grid.Row="4" Margin="5" Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjModePLV.TechnModesPLV.GasConsumptionMPK.ParamString}"/>
+                <TextBox Grid.Column="1" Grid.Row="4" Margin="5" Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjModePLV.TechnModesPLV.PauseBetweenRollers.ParamString}"/>
+                <TextBox Grid.Column="0" Grid.Row="7" Margin="5" Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjModePLV.TechnModesPLV.WidthOffset.ParamString}"/>
+                <TextBox Grid.Column="1" Grid.Row="7" Margin="5" Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjModePLV.TechnModesPLV.HeightOffset.ParamString}"/>
+                <TextBox Grid.Column="0" Grid.Row="10" Margin="5" Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjModePLV.TechnModesPLV.ConsumptionMPK.ParamString}"/>
+                <TextBox Grid.Column="1" Grid.Row="10" Margin="5" Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjModePLV.TechnModesPLV.TubesKZP.ParamString}"/>
+                <TextBox Grid.Column="0" Grid.Row="13" Margin="5" Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjModePLV.TechnModesPLV.ProcessKZU.ParamString}"/>
+                <TextBox Grid.Column="1" Grid.Row="13" Margin="5" Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjModePLV.TechnModesPLV.RollWidth.ParamString}"/>
+                <TextBox Grid.Column="0" Grid.Row="16" Margin="5" Text="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjModePLV.TechnModesPLV.RollDiameter.ParamString}"/>
+
+            </Grid>
+
+
+        </Grid>
+
+    </Grid>
+</UserControl>
