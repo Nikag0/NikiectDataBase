@@ -10,7 +10,6 @@ namespace DBcontext
 
         }
 
-
         private Guid id = Guid.NewGuid();
         private string nameThis = "";
 

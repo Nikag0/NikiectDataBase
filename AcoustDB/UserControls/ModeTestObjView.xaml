@@ -46,10 +46,11 @@
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100*"/>
-                <ColumnDefinition Width="100*"/>
-                <ColumnDefinition Width="100*"/>
-                <ColumnDefinition Width="100*"/>
+                <ColumnDefinition Width="400*"/>
+                <ColumnDefinition Width="107*"/>
+                <ColumnDefinition Width="293*"/>
+                <ColumnDefinition Width="400*"/>
+                <ColumnDefinition Width="400*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
@@ -65,27 +66,27 @@
                 <RowDefinition Height="100*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Column="0" Grid.ColumnSpan="4" TextWrapping="Wrap" TextAlignment="Center" Text="Общая информация"/>
+            <TextBlock Grid.Column="2" Grid.ColumnSpan="2" TextWrapping="Wrap" TextAlignment="Center" Text="Общая информация" HorizontalAlignment="Left" Margin="218,0,0,0"/>
 
-            <TextBlock Grid.Column="0" Grid.Row="2" Text="Исполнитель испытаний"/>
-            <TextBlock Grid.Column="1" Grid.Row="2" Text="Объект испытаний"/>
-            <TextBlock Grid.Column="2" Grid.Row="2" Text="Вид испытаний"/>
-            <TextBlock Grid.Column="3" Grid.Row="2" Text="Окружающая среда"/>
-            <TextBlock Grid.Column="0" Grid.Row="5" Text="Особые условия испытаний"/>
-            <TextBlock Grid.Column="1" Grid.Row="5" Text="Нормативная документация"/>
-            <TextBlock Grid.Column="2" Grid.Row="5" Text="Образцы для испытаний"/>
-            <TextBlock Grid.Column="3" Grid.Row="5" Text="№ образцов"/>
-            <TextBlock Grid.Column="0" Grid.Row="8" Text="Используемое СИ/ИО"/>
+            <TextBlock Grid.Row="2" Text="Исполнитель испытаний"/>
+            <TextBlock Grid.Column="2" Grid.Row="2" Text="Объект испытаний" HorizontalAlignment="Left" Margin="24,0,0,0"/>
+            <TextBlock Grid.Column="3" Grid.Row="2" Text="Вид испытаний"/>
+            <TextBlock Grid.Column="4" Grid.Row="2" Text="Окружающая среда"/>
+            <TextBlock Grid.Row="5" Text="Особые условия испытаний"/>
+            <TextBlock Grid.Column="1" Grid.Row="5" Text="Нормативная документация" Grid.ColumnSpan="2"/>
+            <TextBlock Grid.Column="3" Grid.Row="5" Text="Образцы для испытаний"/>
+            <TextBlock Grid.Column="4" Grid.Row="5" Text="№ образцов"/>
+            <TextBlock Grid.Row="8" Text="Используемое СИ/ИО"/>
 
-            <TextBox Grid.Column="0" Grid.Row="3" Margin="5" Text="{Binding ViewModelDevice.GeneralDescriptStage2.TestPerformer}"/>
-            <TextBox Grid.Column="1" Grid.Row="3" Margin="5" Text="{Binding ViewModelDevice.GeneralDescriptStage2.TestObject}"/>
-            <TextBox Grid.Column="2" Grid.Row="3" Margin="5" Text="{Binding ViewModelDevice.GeneralDescriptStage2.TestType}"/>
-            <TextBox Grid.Column="3" Grid.Row="3" Margin="5" Text="{Binding ViewModelDevice.GeneralDescriptStage2.Environment}"/>
-            <TextBox Grid.Column="0" Grid.Row="6" Margin="5" Text="{Binding ViewModelDevice.GeneralDescriptStage2.SpecialTestConditions}"/>
-            <TextBox Grid.Column="1" Grid.Row="6" Margin="5" Text="{Binding ViewModelDevice.GeneralDescriptStage2.RegulatoryDocumentation}"/>
-            <TextBox Grid.Column="2" Grid.Row="6" Margin="5" Text="{Binding ViewModelDevice.GeneralDescriptStage2.TestSamples}"/>
-            <TextBox Grid.Column="3" Grid.Row="6" Margin="5" Text="{Binding ViewModelDevice.GeneralDescriptStage2.SampleNumber}"/>
-            <TextBox Grid.Column="0" Grid.Row="9" Margin="5" Text="{Binding ViewModelDevice.GeneralDescriptStage2.UsedMeasurInstrument}"/>
+            <TextBox Grid.Column="0" Grid.Row="3" Margin="5,5,5,5" Text="{Binding ViewModelDevice.GeneralDescriptStage2.TestPerformer}"/>
+            <TextBox Grid.Column="1" Grid.Row="3" Margin="5,5,5,5" Text="{Binding ViewModelDevice.GeneralDescriptStage2.TestObject}" Grid.ColumnSpan="2"/>
+            <TextBox Grid.Column="3" Grid.Row="3" Margin="5,5,5,5" Text="{Binding ViewModelDevice.GeneralDescriptStage2.TestType}"/>
+            <TextBox Grid.Column="4" Grid.Row="3" Margin="5,5,5,5" Text="{Binding ViewModelDevice.GeneralDescriptStage2.Environment}"/>
+            <TextBox Grid.Column="0" Grid.Row="6" Margin="5,5,5,5" Text="{Binding ViewModelDevice.GeneralDescriptStage2.SpecialTestConditions}"/>
+            <TextBox Grid.Column="1" Grid.Row="6" Margin="5,5,5,5" Text="{Binding ViewModelDevice.GeneralDescriptStage2.RegulatoryDocumentation}" Grid.ColumnSpan="2"/>
+            <TextBox Grid.Column="3" Grid.Row="6" Margin="5,5,5,5" Text="{Binding ViewModelDevice.GeneralDescriptStage2.TestSamples}"/>
+            <TextBox Grid.Column="4" Grid.Row="6" Margin="5,5,5,5" Text="{Binding ViewModelDevice.GeneralDescriptStage2.SampleNumber}"/>
+            <TextBox Grid.Column="0" Grid.Row="9" Margin="5,5,5,5" Text="{Binding ViewModelDevice.GeneralDescriptStage2.UsedMeasurInstrument}"/>
 
         </Grid>
 

@@ -284,13 +284,18 @@
                         <ColumnDefinition Width="100*"/>
                     </Grid.ColumnDefinitions>
 
-                    <ComboBox Grid.Column="0" Margin="5"/>
-                    <Button Grid.Column="1" Margin="5" Content="Добавить в таблицу"/>
+                    <ComboBox Grid.Column="0"  Margin="5" 
+                        ItemsSource="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.CollectionChemicalComposit}" 
+                        SelectedItem="{Binding ViewModelDevice.SelectTableChemicalComposit}"
+                        DisplayMemberPath="NameThis"
+                    />
+
+                    <Button Grid.Column="1" Margin="5" Content="Добавить в таблицу" Command="{Binding ViewModelDevice.AddTableChemicalComposit}" />
 
                 </Grid>
 
                 <DataGrid Grid.Column="0" Grid.Row="3" AutoGenerateColumns="False" CanUserDeleteRows="True" CanUserAddRows="True" 
-                          ItemsSource="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.CompositMPKs}">
+                          ItemsSource="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.TableChemicalComposit}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Width="*" Header="Элемент" Binding="{Binding Element}"/>
                         <DataGridTextColumn Width="*" Header="Факт., % масс" Binding="{Binding FactValue}"/>

@@ -1,4 +1,5 @@
 ﻿using AcoustDB.DBcontext.ModeCreate._1;
+using AcoustDB.DBcontext.ModeCreate._3;
 using DBcontext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
@@ -18,12 +19,17 @@ namespace AcoustDB.DBcontext
         public DbSet<TableBasicInfoMPK> TableBasicInfoMPK { get; set; }
         public DbSet<TableTechnCharcsMPK> TableTechnCharcsMPK { get; set; }
         public DbSet<MarkMPK> MarkMPK { get; set; }
-
-
-
         public DbSet<TableParticleShape> TableParticleShape { get; set; }
         public DbSet<ParticleShape> ParticleShape { get; set; }
-        public DbSet<TableParticleShapeMPK> TableParticleShapeMPK { get; set; }
+        public DbSet<IdParticleShapeMPK> IdParticleShapeMPK { get; set; }
+        public DbSet<TableChemicalComposit> TableChemicalComposit { get; set; }
+        public DbSet<IdChemicalCompositMPK> IdChemicalCompositMPK { get; set; }
+        public DbSet<ObjModePLV> ObjModePLV { get; set; }
+        public DbSet<TableGenInforModesPLV> TableGenInforModesPLV { get; set; }
+        public DbSet<TableTechnModesPLV> TableTechnModesPLV { get; set; }
+        public DbSet<ObjHeatModes> ObjHeatModes { get; set; }
+        public DbSet<IdDataHeatModes> IdDataHeatModes { get; set; }
+        public DbSet<TableDataHeatModes> TableDataHeatModes { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

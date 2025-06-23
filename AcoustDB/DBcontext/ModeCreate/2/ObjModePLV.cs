@@ -1,6 +1,7 @@
 ﻿using INotifyChangedCustom;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DBcontext
 {
@@ -8,6 +9,8 @@ namespace DBcontext
     {
 
         private Guid id = Guid.NewGuid();
+        private Guid idTableGenInforModesPLV;
+        private Guid idTableTechnModesPLV;
         private string nameThis = "";
 
         private TableGenInforModesPLV genInforModesPLV = new TableGenInforModesPLV();
@@ -22,7 +25,24 @@ namespace DBcontext
                 NotifyPropertyChanged();
             }
         }
-
+        public Guid IdTableGenInforModesPLV
+        {
+            get => idTableGenInforModesPLV;
+            set
+            {
+                idTableGenInforModesPLV = value;
+                NotifyPropertyChanged();
+            }
+        }
+        public Guid IdTableTechnModesPLV
+        {
+            get => idTableTechnModesPLV;
+            set
+            {
+                idTableTechnModesPLV = value;
+                NotifyPropertyChanged();
+            }
+        }
         public string NameThis
         {
             get => nameThis;
@@ -32,7 +52,7 @@ namespace DBcontext
                 NotifyPropertyChanged();
             }
         }
-
+        [NotMapped]
         public TableGenInforModesPLV GenInforModesPLV
         {
             get => genInforModesPLV;
@@ -42,6 +62,7 @@ namespace DBcontext
                 NotifyPropertyChanged();
             }
         }
+        [NotMapped]
         public TableTechnModesPLV TechnModesPLV
         {
             get => technModesPLV;

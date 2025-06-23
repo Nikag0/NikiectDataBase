@@ -34,8 +34,12 @@
                     <ColumnDefinition Width="100*"/>
                 </Grid.ColumnDefinitions>
 
-                <ComboBox Grid.Column="0" Margin="5"/>
-                <Button Grid.Column="1" Margin="5" Content="Добавить в таблицу"/>
+                <ComboBox Grid.Column="0"  Margin="5" 
+                    ItemsSource="{Binding ViewModelDevice.DeviceFunc.ContextAcoustDB.CollectionTableDataHeatModes}" 
+                    SelectedItem="{Binding ViewModelDevice.SelectTableDataHeatModes}"
+                    DisplayMemberPath="NameThis"
+                />
+                <Button Grid.Column="1" Margin="5" Content="Добавить в таблицу" Command="{Binding ViewModelDevice.AddTableDataHeatModes}" />
 
             </Grid>
 

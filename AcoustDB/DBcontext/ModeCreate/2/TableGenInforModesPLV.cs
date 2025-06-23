@@ -23,7 +23,6 @@ namespace DBcontext
                 NotifyPropertyChanged();
             }
         }
-
         public string NameThis
         {
             get => nameThis;
@@ -33,7 +32,6 @@ namespace DBcontext
                 NotifyPropertyChanged();
             }
         }
-
         public DateTime DateRelease
         {
             get => dateRelease;
@@ -43,7 +41,6 @@ namespace DBcontext
                 NotifyPropertyChanged();
             }
         }
-
         public string Equipment
         {
             get => equipment;

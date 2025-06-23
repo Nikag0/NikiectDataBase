@@ -9,6 +9,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Reflection;
 using System;
+using AcoustDB.DBcontext.ModeCreate._1;
 
 namespace ViewModels
 {
@@ -24,6 +25,8 @@ namespace ViewModels
 
         private string newNameObjUser = "";
         private TableParticleShape selectTableParticleShape;
+        private TableChemicalComposit selectTableChemicalComposit;
+        private TableDataHeatModes selectTableDataHeatModes;
         private int curUsedGeneralDescript = 0;
         private int curUsedAnalysis = 0;
         private int curUsedControl = 0;
@@ -34,6 +37,8 @@ namespace ViewModels
         public ICommand SaveNewObjUser { get; private set; }
         public ICommand AddNewObjUser { get; private set; }
         public ICommand AddTableParticleShape { get; private set; }
+        public ICommand AddTableChemicalComposit { get; private set; }
+        public ICommand AddTableDataHeatModes { get; private set; }
 
         public ICommand LoadQualityPassport { get; private set; }
         public ICommand LoadGraphStressStage2Low { get; private set; }
@@ -85,7 +90,24 @@ namespace ViewModels
                 NotifyPropertyChanged();
             }
         }
-
+        public TableChemicalComposit SelectTableChemicalComposit
+        {
+            get => selectTableChemicalComposit;
+            set
+            {
+                selectTableChemicalComposit = value;
+                NotifyPropertyChanged();
+            }
+        }
+        public TableDataHeatModes SelectTableDataHeatModes
+        {
+            get => selectTableDataHeatModes;
+            set
+            {
+                selectTableDataHeatModes = value;
+                NotifyPropertyChanged();
+            }
+        }
         public GeneralDescriptTest GeneralDescriptStage2
         {
             get => generalDescriptStage2;
@@ -108,7 +130,7 @@ namespace ViewModels
                         GeneralDescriptStage2 = deviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageTestObjView.ResultsStaticLowTemp.GeneralDescript;
                         break;
                     case 1:
-                        GeneralDescriptStage2 = deviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageTestObjView.ResultsStaticHighTemp.GeneralDescript;
+                         GeneralDescriptStage2 = deviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageTestObjView.ResultsStaticHighTemp.GeneralDescript;
                         break;
                     case 2:
                         GeneralDescriptStage2 = deviceFunc.ContextAcoustDB.AllStageObjUser.SelectedItem.DbSetStageTestObjView.ResultImpact.GeneralDescript;
@@ -166,6 +188,9 @@ namespace ViewModels
             AddNewObjUser = new RelayCommand(p => deviceFunc.ContextAcoustDB.AddCompletedObjUser(new AllStageObj() { NameThis = NewNameObjUser }));
 
             AddTableParticleShape = new RelayCommand(p => deviceFunc.ContextAcoustDB.AddTableParticleShape(SelectTableParticleShape));
+            AddTableChemicalComposit = new RelayCommand(p => deviceFunc.ContextAcoustDB.AddTableChemicalComposit(SelectTableChemicalComposit));
+
+            AddTableDataHeatModes = new RelayCommand(p => deviceFunc.ContextAcoustDB.AddTableDataHeatModes(SelectTableDataHeatModes));
 
             LoadQualityPassport = new RelayCommand(p => LoadFile(p, @"Stage_1\FilePassport", "FilePass", typeof(QualityPassport), true));
 

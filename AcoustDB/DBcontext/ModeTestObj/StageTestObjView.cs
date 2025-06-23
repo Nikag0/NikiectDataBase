@@ -1,6 +1,7 @@
 ﻿using INotifyChangedCustom;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Serialization;
 
 namespace DBcontext
@@ -20,7 +21,6 @@ namespace DBcontext
         private ResultsStaticTensileTests resultsStaticHighTemp = new ResultsStaticTensileTests();
         private ResultImpactTest resultImpact = new ResultImpactTest();
         private ResultsCreepRuptureTests resultsCreep = new ResultsCreepRuptureTests();
-
         private StatisticsResultsStage2 statisticsResults = new StatisticsResultsStage2();
 
 
@@ -33,7 +33,6 @@ namespace DBcontext
                 NotifyPropertyChanged();
             }
         }
-
         public string NameThis
         {
             get => nameThis;
@@ -43,7 +42,6 @@ namespace DBcontext
                 NotifyPropertyChanged();
             }
         }
-
         public ResultsStaticTensileTests ResultsStaticLowTemp
         {
             get => resultsStaticLowTemp;
@@ -53,6 +51,7 @@ namespace DBcontext
                 NotifyPropertyChanged();
             }
         }
+        [NotMapped]
         public ResultsStaticTensileTests ResultsStaticHighTemp
         {
             get => resultsStaticHighTemp;
@@ -62,6 +61,7 @@ namespace DBcontext
                 NotifyPropertyChanged();
             }
         }
+        [NotMapped]
         public ResultImpactTest ResultImpact
         {
             get => resultImpact;
@@ -71,6 +71,7 @@ namespace DBcontext
                 NotifyPropertyChanged();
             }
         }
+        [NotMapped]
         public ResultsCreepRuptureTests ResultsCreep
         {
             get => resultsCreep;
@@ -80,7 +81,7 @@ namespace DBcontext
                 NotifyPropertyChanged();
             }
         }
-
+        [NotMapped]
         public StatisticsResultsStage2 StatisticsResults
         {
             get => statisticsResults;

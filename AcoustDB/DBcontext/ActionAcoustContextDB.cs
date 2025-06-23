@@ -19,26 +19,12 @@ using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Windows;
 using AcoustDB.DBcontext.ModeCreate._1;
+using AcoustDB.DBcontext.ModeCreate._3;
 
 namespace DBcontext
 {
     public class ActionAcoustContextDB : INotifyChanged
     {
-        private ObservableCollection<TableParticleShape> collectionParticleShape = new ObservableCollection<TableParticleShape>();
-        public ObservableCollection<TableParticleShape> CollectionParticleShape
-        {
-            get => collectionParticleShape;
-            set
-            {
-                collectionParticleShape = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-
-
-
-
         private Settings<SerializAcoustContextDB> serializAcoustContext = new Settings<SerializAcoustContextDB>();
         private Settings<SerializCompletedData> serializCompletedDataUser = new Settings<SerializCompletedData>();
         private AcoustContextDB acoustContextDb = new AcoustContextDB();
@@ -47,6 +33,11 @@ namespace DBcontext
         private ApplicationContext db = new ApplicationContext();
         private ObservableCollection<TableBasicInfoMPK> collectionBasicInfoMPK = new ObservableCollection<TableBasicInfoMPK>();
         private ObservableCollection<TableTechnCharcsMPK> collectionTechnCharcsMPK = new ObservableCollection<TableTechnCharcsMPK>();
+        private ObservableCollection<TableParticleShape> collectionParticleShape = new ObservableCollection<TableParticleShape>();
+        private ObservableCollection<TableChemicalComposit> collectionChemicalComposit = new ObservableCollection<TableChemicalComposit>();
+        private ObservableCollection<TableTechnModesPLV> collectionTechnModesPLV = new ObservableCollection<TableTechnModesPLV>();
+        private ObservableCollection<TableGenInforModesPLV> collectionGenInforModesPLV = new ObservableCollection<TableGenInforModesPLV>();
+        private ObservableCollection<TableDataHeatModes> collectionTableDataHeatModes = new ObservableCollection<TableDataHeatModes>();
 
         public AcoustContextDB AcoustContextDb
         {
@@ -84,7 +75,51 @@ namespace DBcontext
                 NotifyPropertyChanged();
             }
         }
-
+        public ObservableCollection<TableParticleShape> CollectionParticleShape
+        {
+            get => collectionParticleShape;
+            set
+            {
+                collectionParticleShape = value;
+                NotifyPropertyChanged();
+            }
+        }
+        public ObservableCollection<TableChemicalComposit> CollectionChemicalComposit
+        {
+            get => collectionChemicalComposit;
+            set
+            {
+                collectionChemicalComposit = value;
+                NotifyPropertyChanged();
+            }
+        }
+        public ObservableCollection<TableTechnModesPLV> CollectionTechnModesPLV
+        {
+            get => collectionTechnModesPLV;
+            set
+            {
+                collectionTechnModesPLV = value;
+                NotifyPropertyChanged();
+            }
+        }
+        public ObservableCollection<TableGenInforModesPLV> CollectionGenInforModesPLV
+        {
+            get => collectionGenInforModesPLV;
+            set
+            {
+                collectionGenInforModesPLV = value;
+                NotifyPropertyChanged();
+            }
+        }
+        public ObservableCollection<TableDataHeatModes> CollectionTableDataHeatModes
+        {
+            get => collectionTableDataHeatModes;
+            set
+            {
+                collectionTableDataHeatModes = value;
+                NotifyPropertyChanged();
+            }
+        }
         public bool AddCompletedObjUser(AllStageObj completedTransactions)
         {
             if (!string.IsNullOrEmpty(completedTransactions.NameThis))
@@ -113,13 +148,47 @@ namespace DBcontext
             return false;
         }
 
+        public bool AddTableChemicalComposit(TableChemicalComposit shape)
+        {
+            if (!string.IsNullOrEmpty(shape.NameThis) && !AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.TableChemicalComposit.Contains(shape))
+            {
+                AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.TableChemicalComposit.Add(shape);
+                //TableChemicalCompositMPK newtableChemicalCompositMPK = new TableChemicalCompositMPK
+                //{
+                //    IdObjMPK = AllStageObjUser.SelectedItem.DbSetStageManufact.IdObjMPK,
+                //    IdTableChemicalComposit = shape.Id
+                //};
+                //db.TableChemicalCompositMPK.Add(newtableChemicalCompositMPK);
+                //db.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
+        public bool AddTableDataHeatModes(TableDataHeatModes data)
+        {
+            if (!string.IsNullOrEmpty(data.NameThis) && !AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjHeatModes.TableDataHeatModes.Contains(data))
+            {
+                AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjHeatModes.TableDataHeatModes.Add(data);
+                //TableChemicalCompositMPK newtableChemicalCompositMPK = new TableChemicalCompositMPK
+                //{
+                //    IdObjMPK = AllStageObjUser.SelectedItem.DbSetStageManufact.IdObjMPK,
+                //    IdTableChemicalComposit = shape.Id
+                //};
+                //db.TableChemicalCompositMPK.Add(newtableChemicalCompositMPK);
+                //db.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
         public bool SaveCompletedObjUser()
         {
             db.AllStageObj.Add(AllStageObjUser.SelectedItem);
             db.MarkMPK.Add(AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.BasicInfoMPK.MarkMPK);
-            foreach (var item in AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.TableParticleShapeMPK)
+            foreach (IdParticleShapeMPK item in AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.IdParticleShapeMPK)
             {
-                db.TableParticleShapeMPK.Add(item);
+                db.IdParticleShapeMPK.Add(item);
             }
 
             int affectedRows = db.SaveChanges();
@@ -127,14 +196,19 @@ namespace DBcontext
             AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.BasicInfoMPK.IdMarkMPK = AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.BasicInfoMPK.MarkMPK.Id;
             db.TableBasicInfoMPK.Add(AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.BasicInfoMPK);
             db.QualityPassport.Add(AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.Passport);
+            db.TableGenInforModesPLV.Add(AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjModePLV.GenInforModesPLV);
+            db.TableTechnModesPLV.Add(AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjModePLV.TechnModesPLV);
             affectedRows = db.SaveChanges();
             AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.IdTableBasicInfoMPK = AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.BasicInfoMPK.Id;
             AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.IdTableTechnCharcsMPK = AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.TechnCharcsMPK.Id;
             AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.IdPassport = AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.Passport.Id;
-            //AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.ParticleShapeData.Shape = AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.ParticleShapeData.Shape.Id;
+            AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjModePLV.IdTableGenInforModesPLV = AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjModePLV.GenInforModesPLV.Id;
+            AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjModePLV.IdTableTechnModesPLV = AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjModePLV.TechnModesPLV.Id;
             db.ObjMPK.Add(AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK);
+            db.ObjModePLV.Add(AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjModePLV);
             affectedRows = db.SaveChanges();
             AllStageObjUser.SelectedItem.DbSetStageManufact.IdObjMPK = AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjMPK.Id;
+            AllStageObjUser.SelectedItem.DbSetStageManufact.IdObjModePLV = AllStageObjUser.SelectedItem.DbSetStageManufact.DbObjModePLV.Id;
             AllStageObjUser.SelectedItem.DbSetStageManufact.IdAllStageObj = AllStageObjUser.SelectedItem.Id;
             db.StageManufact.Add(AllStageObjUser.SelectedItem.DbSetStageManufact);
             affectedRows = db.SaveChanges();
@@ -165,21 +239,61 @@ namespace DBcontext
                 CollectionParticleShape.Add(item);
             }
 
+            foreach (TableChemicalComposit item in db.TableChemicalComposit)
+            {
+                CollectionChemicalComposit.Add(item);
+            }
+
+            foreach (TableTechnModesPLV item in db.TableTechnModesPLV)
+            {
+                CollectionTechnModesPLV.Add(item);
+            }
+
+            foreach (TableGenInforModesPLV item in db.TableGenInforModesPLV)
+            {
+                CollectionGenInforModesPLV.Add(item);
+            }
+
+            foreach (TableDataHeatModes item in db.TableDataHeatModes)
+            {
+                CollectionTableDataHeatModes.Add(item);
+            }
+
             foreach (AllStageObj stageObj in AllStageObjUser.Collection)
             {
                 stageObj.DbSetStageManufact = db.StageManufact.FirstOrDefault(sm => sm.IdAllStageObj == stageObj.Id);
                 stageObj.DbSetStageManufact.DbObjMPK = db.ObjMPK.FirstOrDefault(sm => sm.Id == stageObj.DbSetStageManufact.IdObjMPK);
+                stageObj.DbSetStageManufact.DbObjModePLV = db.ObjModePLV.FirstOrDefault(sm => sm.Id == stageObj.DbSetStageManufact.IdObjModePLV);
+                stageObj.DbSetStageManufact.DbObjHeatModes = db.ObjHeatModes.FirstOrDefault(sm => sm.Id == stageObj.DbSetStageManufact.IdObjHeatModes);
 
-
-                foreach (TableParticleShapeMPK item in db.TableParticleShapeMPK)
+                foreach (IdChemicalCompositMPK item  in db.IdChemicalCompositMPK)
                 {
                     if (stageObj.DbSetStageManufact.DbObjMPK.Id == item.IdObjMPK)
                     {
-                        stageObj.DbSetStageManufact.DbObjMPK.TableParticleShapeMPK.Add(item);
+                        stageObj.DbSetStageManufact.DbObjMPK.IdChemicalCompositMPK.Add(item);
                     }
                 }
 
-                foreach (TableParticleShapeMPK item in stageObj.DbSetStageManufact.DbObjMPK.TableParticleShapeMPK)
+                foreach (IdChemicalCompositMPK item in stageObj.DbSetStageManufact.DbObjMPK.IdChemicalCompositMPK)
+                {
+                    foreach (TableChemicalComposit item1 in db.TableChemicalComposit)
+                    {
+                        if (item.IdTableChemicalComposit == item1.Id)
+                        {
+                            stageObj.DbSetStageManufact.DbObjMPK.TableChemicalComposit.Add(item1);
+                        }
+                    }
+                }
+
+                foreach (IdParticleShapeMPK item in db.IdParticleShapeMPK)
+                {
+                    if (stageObj.DbSetStageManufact.DbObjMPK.Id == item.IdObjMPK)
+                    {
+                        stageObj.DbSetStageManufact.DbObjMPK.IdParticleShapeMPK.Add(item);
+                    }
+                }
+
+                foreach (IdParticleShapeMPK item in stageObj.DbSetStageManufact.DbObjMPK.IdParticleShapeMPK)
                 {
                     foreach (TableParticleShape item1 in db.TableParticleShape)
                     {
@@ -201,16 +315,32 @@ namespace DBcontext
                     }
                 }
 
+                foreach (IdDataHeatModes item in db.IdDataHeatModes)
+                {
+                    if (stageObj.DbSetStageManufact.DbObjHeatModes.Id == item.IdObjHeatModes)
+                    {
+                        stageObj.DbSetStageManufact.DbObjHeatModes.IdDataHeatModes.Add(item);
+                    }
+                }
+
+                foreach (IdDataHeatModes item in stageObj.DbSetStageManufact.DbObjHeatModes.IdDataHeatModes)
+                {
+                    foreach (TableDataHeatModes item1 in db.TableDataHeatModes)
+                    {
+                        if (item.IdTableDataHeatModes == item1.Id)
+                        {
+                            stageObj.DbSetStageManufact.DbObjHeatModes.TableDataHeatModes.Add(item1);
+                        }
+                    }
+                }
+
                 stageObj.DbSetStageManufact.DbObjMPK.Passport = db.QualityPassport.FirstOrDefault(sm => sm.Id == stageObj.DbSetStageManufact.DbObjMPK.IdPassport);
                 stageObj.DbSetStageManufact.DbObjMPK.BasicInfoMPK = db.TableBasicInfoMPK.FirstOrDefault(sm => sm.Id == stageObj.DbSetStageManufact.DbObjMPK.IdTableBasicInfoMPK);
                 stageObj.DbSetStageManufact.DbObjMPK.BasicInfoMPK.MarkMPK = db.MarkMPK.FirstOrDefault(sm => sm.Id == stageObj.DbSetStageManufact.DbObjMPK.BasicInfoMPK.IdMarkMPK);
                 stageObj.DbSetStageManufact.DbObjMPK.TechnCharcsMPK = db.TableTechnCharcsMPK.FirstOrDefault(sm => sm.Id == stageObj.DbSetStageManufact.DbObjMPK.IdTableTechnCharcsMPK);
+                stageObj.DbSetStageManufact.DbObjModePLV.TechnModesPLV= db.TableTechnModesPLV.FirstOrDefault(sm => sm.Id == stageObj.DbSetStageManufact.DbObjModePLV.IdTableTechnModesPLV);
+                stageObj.DbSetStageManufact.DbObjModePLV.GenInforModesPLV = db.TableGenInforModesPLV.FirstOrDefault(sm => sm.Id == stageObj.DbSetStageManufact.DbObjModePLV.IdTableGenInforModesPLV);
             }
-
-            //foreach (TableParticleShape item in db.TableParticleShape)
-            //{
-            //    AllStageObjUser.Collection.
-            //}
         }
 
         public void SaveCatalog()

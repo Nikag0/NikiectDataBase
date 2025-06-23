@@ -1,17 +1,19 @@
 ﻿using INotifyChangedCustom;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace DBcontext
+namespace AcoustDB.DBcontext.ModeCreate._1
 {
-    public class TableChemicalCompositMPK : INotifyChanged
+    public class TableChemicalComposit : INotifyChanged
     {
         private Guid id = Guid.NewGuid();
         private string nameThis = "";
-
         private string element = "";
         private string factValue = "";
         private string referenceValue = "";
-
 
         public Guid Id
         {
@@ -22,7 +24,6 @@ namespace DBcontext
                 NotifyPropertyChanged();
             }
         }
-
         public string NameThis
         {
             get => nameThis;
@@ -32,7 +33,6 @@ namespace DBcontext
                 NotifyPropertyChanged();
             }
         }
-
         public string Element
         {
             get => element;
@@ -60,7 +60,6 @@ namespace DBcontext
                 NotifyPropertyChanged();
             }
         }
-
         public override string ToString()
         {
             return NameThis;

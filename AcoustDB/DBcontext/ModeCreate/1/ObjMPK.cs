@@ -14,55 +14,20 @@ namespace DBcontext
 {
     public class ObjMPK : INotifyChanged
     {
-        private ObservableCollection<TableParticleShape> tableParticleShape = new ObservableCollection<TableParticleShape>();
-        private ObservableCollection<TableParticleShapeMPK> tableParticleShapeMPK = new ObservableCollection<TableParticleShapeMPK>();
-        private List<TableChemicalCompositMPK> compositMPKs = new List<TableChemicalCompositMPK>();
-
-        [NotMapped]
-        public ObservableCollection<TableParticleShape> TableParticleShape
-        {
-            get => tableParticleShape;
-            set
-            {
-                tableParticleShape = value;
-                NotifyPropertyChanged();
-            }
-        }
-        [NotMapped]
-        public ObservableCollection<TableParticleShapeMPK> TableParticleShapeMPK
-        {
-            get => tableParticleShapeMPK;
-            set
-            {
-                tableParticleShapeMPK = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        [NotMapped]
-        public List<TableChemicalCompositMPK> CompositMPKs
-        {
-            get => compositMPKs;
-            set
-            {
-                compositMPKs = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-
-
-
         private Guid id = Guid.NewGuid();
         private string nameThis = "";
         private Guid idTableBasicInfoMPK;
         private Guid idTableTechnCharcsMPK;
         private Guid idPassport;
-
         private QualityPassport passport = new QualityPassport();
         private TableBasicInfoMPK basicInfoMPK = new TableBasicInfoMPK();
         private TableTechnCharcsMPK technCharcsMPK = new TableTechnCharcsMPK();
 
+        private ObservableCollection<TableParticleShape> tableParticleShape = new ObservableCollection<TableParticleShape>();
+        private ObservableCollection<IdParticleShapeMPK> idParticleShapeMPK = new ObservableCollection<IdParticleShapeMPK>();
+
+        private ObservableCollection<TableChemicalComposit> tableChemicalComposit = new ObservableCollection<TableChemicalComposit>();
+        private ObservableCollection<IdChemicalCompositMPK> idChemicalCompositMPK = new ObservableCollection<IdChemicalCompositMPK>();
 
         public Guid Id
         {
@@ -109,7 +74,6 @@ namespace DBcontext
                 NotifyPropertyChanged();
             }
         }
-
         [NotMapped]
         public QualityPassport Passport
         {
@@ -137,6 +101,47 @@ namespace DBcontext
             set
             {
                 technCharcsMPK = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        [NotMapped]
+        public ObservableCollection<TableParticleShape> TableParticleShape
+        {
+            get => tableParticleShape;
+            set
+            {
+                tableParticleShape = value;
+                NotifyPropertyChanged();
+            }
+        }
+        [NotMapped]
+        public ObservableCollection<IdParticleShapeMPK> IdParticleShapeMPK
+        {
+            get => idParticleShapeMPK;
+            set
+            {
+                idParticleShapeMPK = value;
+                NotifyPropertyChanged();
+            }
+        }
+        [NotMapped]
+        public ObservableCollection<TableChemicalComposit> TableChemicalComposit
+        {
+            get => tableChemicalComposit;
+            set
+            {
+                tableChemicalComposit = value;
+                NotifyPropertyChanged();
+            }
+        }
+        [NotMapped]
+        public ObservableCollection<IdChemicalCompositMPK> IdChemicalCompositMPK
+        {
+            get => idChemicalCompositMPK;
+            set
+            {
+                idChemicalCompositMPK = value;
                 NotifyPropertyChanged();
             }
         }

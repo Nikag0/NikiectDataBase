@@ -42,16 +42,6 @@ namespace DBcontext
                 NotifyPropertyChanged();
             }
         }
-        [NotMapped]
-        public ParticleShape Shape
-        {
-            get => shape;
-            set
-            {
-                shape = value;
-                NotifyPropertyChanged();
-            }
-        }
         public string ParticleContent
         {
             get => particleContent;
@@ -67,6 +57,16 @@ namespace DBcontext
             set
             {
                 referenceValue = value;
+                NotifyPropertyChanged();
+            }
+        }
+        [NotMapped]
+        public ParticleShape Shape
+        {
+            get => shape;
+            set
+            {
+                shape = value;
                 NotifyPropertyChanged();
             }
         }

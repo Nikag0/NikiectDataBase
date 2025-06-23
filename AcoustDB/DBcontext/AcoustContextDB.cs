@@ -24,7 +24,7 @@ namespace DBcontext
         private List<TableBasicInfoMPK> dbSetTableBasicInfoMPK = new List<TableBasicInfoMPK>();
         private List<TableTechnCharcsMPK> dbSetTableTechnCharcsMPK = new List<TableTechnCharcsMPK>();
         private List<TableParticleShape> dbSetTableParticleShape = new List<TableParticleShape>();
-        private List<TableChemicalCompositMPK> dbSetTableChemicalCompositMPK = new List<TableChemicalCompositMPK>();
+        private List<IdChemicalCompositMPK> dbSetTableChemicalCompositMPK = new List<IdChemicalCompositMPK>();
 
         /////////////-------2-------//////////////
         private List<ObjModePLV> dbSetObjModePLV = new List<ObjModePLV>();
@@ -35,7 +35,7 @@ namespace DBcontext
         /////////////-------3-------//////////////
         private List<ObjHeatModes> dbSetObjHeatModes = new List<ObjHeatModes>();
 
-        private List<DataHeatModes> dbSetDataHeatModes = new List<DataHeatModes>();
+        private List<TableDataHeatModes> dbSetDataHeatModes = new List<TableDataHeatModes>();
 
 
 
@@ -101,7 +101,7 @@ namespace DBcontext
                 NotifyPropertyChanged();
             }
         }
-        public List<TableChemicalCompositMPK> DbSetTableChemicalCompositMPK
+        public List<IdChemicalCompositMPK> DbSetTableChemicalCompositMPK
         {
             get => dbSetTableChemicalCompositMPK;
             set
@@ -146,7 +146,7 @@ namespace DBcontext
                 NotifyPropertyChanged();
             }
         }
-        public List<DataHeatModes> DbSetDataHeatModes
+        public List<TableDataHeatModes> DbSetDataHeatModes
         {
             get => dbSetDataHeatModes;
             set

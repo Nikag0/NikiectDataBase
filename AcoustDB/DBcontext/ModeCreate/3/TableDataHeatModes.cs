@@ -3,7 +3,7 @@ using System;
 
 namespace DBcontext
 {
-    public class DataHeatModes : INotifyChanged
+    public class TableDataHeatModes : INotifyChanged
     {
         private Guid id = Guid.NewGuid();
         private string nameThis = "";
@@ -25,7 +25,6 @@ namespace DBcontext
                 NotifyPropertyChanged();
             }
         }
-
         public string NameThis
         {
             get => nameThis;
@@ -35,7 +34,6 @@ namespace DBcontext
                 NotifyPropertyChanged();
             }
         }
-
         public string Type
         {
             get => type;

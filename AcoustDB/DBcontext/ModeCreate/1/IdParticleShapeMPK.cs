@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AcoustDB.DBcontext.ModeCreate._1
 {
-    public class TableParticleShapeMPK : INotifyChanged
+    public class IdParticleShapeMPK : INotifyChanged
     {
         private Guid idObjMPK = Guid.NewGuid();
         private Guid idTableParticleShape = Guid.NewGuid();

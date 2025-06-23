@@ -14,6 +14,8 @@ namespace DBcontext
         private Guid id = Guid.NewGuid();
         private Guid idAllStageObj;
         private Guid idObjMPK;
+        private Guid idObjModePLV;
+        private Guid idObjHeatModes;
         private string nameThis = "";
 
         private ObjMPK  dbObjMPK = new ObjMPK();
@@ -56,7 +58,24 @@ namespace DBcontext
                 NotifyPropertyChanged();
             }
         }
-        
+        public Guid IdObjModePLV
+        {
+            get => idObjModePLV;
+            set
+            {
+                idObjModePLV = value;
+                NotifyPropertyChanged();
+            }
+        }
+        public Guid IdObjHeatModes
+        {
+            get => idObjHeatModes;
+            set
+            {
+                idObjHeatModes = value;
+                NotifyPropertyChanged();
+            }
+        }
         [NotMapped]
         public ObjMPK DbObjMPK
         {
